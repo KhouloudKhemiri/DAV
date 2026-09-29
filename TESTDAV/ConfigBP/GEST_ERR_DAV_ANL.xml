@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+	
+	<Formulaire Nom="ANALYSE ET DETECTION DES ERREURS DU FICHIER DAV"
+		Titre="ANALYSE ET DETECTION DES ERREURS DU FICHIER DAV"
+    Tables="DAVB_DATE"
+		IndSuppression="SUDATE"
+		Action="CREATION" >
+        
+  <Text Position="0" Label="Date : " ColTable="DATOPE" Nom="DATOPE" Type="Date" Index="Oui" Longueur="10" Unique="Oui" Obligatoire="Oui">
+        <OnInit>
+		
+				
+			<Result>
+          <![CDATA[  
+               //%THIS0301%=%DATOPEDAV%.substring(8,10) + "/" + %DATOPEDAV%.substring(5,7) + "/" + %DATOPEDAV%.substring(0,4) ;
+	              
+			  ]]>
+		               		   
+         </Result>
+		       
+      </OnInit> 
+			<OnUpdate>
+		    
+			<Requet Tables="DAVB" >
+					  <Select Nom="NBRLDAV" Type="AlphaNumerique" ColTable="'0'||count(*)"/>
+			</Requet>
+
+			<Requet Tables="DAVB_WORK" >
+					  <Select Nom="NBRWORK" Type="AlphaNumerique" ColTable="'0'||count(*)"/>
+			</Requet>
+	
+     
+			<Result>
+          <![CDATA[  
+             if(%THIS0101%.equals("") )
+             {
+             return;
+             }
+
+           java.text.SimpleDateFormat dateStandard = new java.text.SimpleDateFormat("dd/MM/yyyy");
+					 java.util.Date DATJOU=dateStandard.parse(%Journee%);
+					 java.util.Date DATSAI=dateStandard.parse(%THIS0101%);
+
+						 if (DATSAI.compareTo(DATJOU) !=0)
+             { 
+               %THIS0101%="ERREUR: Date saisie doit etre egale à la date du jour "+ %Journee%;
+			   return;
+             }
+			 
+             if(Integer.parseInt(%NBRWORK%.trim())!=0)
+				{
+                 %THIS0101%="ERREUR: Analyse déja effectuée" ;
+				 return;
+                } 
+
+			 %THIS0102%="Nombre total de lignes à Analyser = " + %NBRLDAV%;
+          ]]> 
+				 </Result>
+
+			</OnUpdate>			
+		</Text>
+           <SimpleText Position="NLigne" Label="" Valeur="" />
+
+		<Bouton Position="NLigne" Label="Analyse"  Action="Valider" MsgConfirm="Confirmer cette opération" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+		
+		 <OnInit>
+		    	<Result>
+				</Result>
+            <OnError>
+            </OnError>
+ 		 </OnInit>	
+		
+
+		 <OnUpdate>
+
+        <Procedure Nom="ANALYSE_DAVB()" />
+
+				<Result>
+
+				</Result>
+
+ 		 </OnUpdate>
+
+		
+	</Formulaire>
+	
+</Entites>

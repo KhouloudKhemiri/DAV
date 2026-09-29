@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<TabPage>
+		<Tab Nom="Sélection" Cible="GEST_ERR_DAV_ANL.xml" />
+		<Tab Nom="Liste" Cible="GEST_ERR_DAV_AFF.xml" />
+		<Tab Nom="Correction Auto" Cible="GEST_ERR_DAV_COR.xml" />
+</TabPage>
+
+</Entites>

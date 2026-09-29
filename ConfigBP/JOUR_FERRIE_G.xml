@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<TabPage>
+		<Tab Nom="Création" Cible="JOUR_FERRIE_C.xml" />
+		<Tab Nom="Modification" Cible="JOUR_FERRIE_M.xml" />
+		<Tab Nom="Suppression" Cible="JOUR_FERRIE_S.xml" />
+		<Tab Nom="Réactivation" Cible="JOUR_FERRIE_R.xml" />
+		<Tab Nom="Affichage" Cible="JOUR_FERRIE_A.xml" />
+</TabPage>
+
+</Entites>

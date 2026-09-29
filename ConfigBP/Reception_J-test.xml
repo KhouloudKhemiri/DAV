@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+		
+	<Formulaire Nom="Test"
+            Titre=" Récéption"
+            Tables=""
+      			Action=""
+            > 
+	
+		<SimpleText Position="NLigne"  Label="" Valeur="" />
+		<SimpleText Position="NLigne"  Label="" Valeur="" />				
+		<SimpleText Position="NLigne"  Label=" NB : " Valeur="Cliquer sur le bouton Valider pour déclancher la Récéption." />
+
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" MsgAttente="Veuillez patienter, Récéption en cours " />
+		<Bouton Position="Auto" Label="Annuler" Action="Accueil" />
+		
+    <OnInit>
+   			<Result><!--
+          <![CDATA[  
+				   	if(Integer.parseInt(%EtatSystem%)== 1)
+					{
+					  	%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+					} else	
+					{
+					    if(Integer.parseInt(%Niveau%) == 1)
+						{
+						  %THIS%="ERREUR: Réception déjà effectuée.";
+					  	} else
+						{
+					      if ((Integer.parseInt(%Niveau%) != 0) && (Integer.parseInt(%Niveau%) != 1))
+						    {
+						    %THIS%="ERREUR: Début de Journée déjà lancé, Réception non autorisée. ";
+					     	}
+						}
+					}
+          ]]> -->
+				</Result>
+
+        <OnError>
+
+        </OnError>
+		</OnInit>
+		
+		<OnUpdate>
+				<Result>
+       <!--   <![CDATA[  
+				   	if(Integer.parseInt(%EtatSystem%)== 1)
+					{
+					  	%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+					} else	
+					{
+					    if(Integer.parseInt(%Niveau%) == 1)
+						{
+						  %THIS%="ERREUR: Réception déjà effectuée.";
+					  	} else
+						{
+					      if ((Integer.parseInt(%Niveau%) != 0) && (Integer.parseInt(%Niveau%) != 1))
+					 	    {
+						    %THIS%="ERREUR: Début de Journée déjà lancé, Réception non autorisée. ";
+					     	} else
+							  {
+  				                %EtatSystem%=1;
+                                //File File1002 = new File("/opt/apache-tomcat/webapps/DEVCTX/Etat/"); 
+                                //File1002.delete(); 
+							  }
+						}
+					}
+          ]]>  -->
+				</Result>
+        <WebService Methode = "FtpDel" >            <Set Nom="URL" >%URLEtat%</Set>            <Set Nom="File" >FL5520</Set>            <Set Nom="FTP_USER" >samif</Set>            <Set Nom="FTP_PWD" >sami2013</Set>            <Set Nom="FTP_HOST" >172.28.70.6</Set>        </WebService>
+
+
+
+
+        <Result>
+    	<!--			<![CDATA[	
+               if (%THIS02%.equals("0"))
+               {
+                 %THIS%="Confirmation: Nb. Opération recus davb : "+(Integer.parseInt(%THIS01%)+Integer.parseInt(%THIS02%))+" <br> Nb. Opération rejetées davb : "+%THIS02%+" <br> ";
+                 %EtatSystem%="0";	
+    			 %Niveau%="1";
+
+               } else
+               {
+                 %THIS%="Confirmation: Nb. Opération recus davb : "+(Integer.parseInt(%THIS01%)+Integer.parseInt(%THIS02%))+" <br> Nb. Opération rejetées FL1002 : <span style='color:#CC0000'>"+%THIS02%+"</span>" ;
+               }
+               
+            ]]>				 -->			
+				</Result>
+
+        <OnError>
+
+        </OnError>
+				
+    </OnUpdate>		
+		 
+	</Formulaire>
+	
+</Entites>

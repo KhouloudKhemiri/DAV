@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+	
+	<Formulaire Nom="GENERATION FICHIER DAV A ENVOYER A LA BCT"
+		Titre="GENERATION FICHIER DAV A ENVOYER A LA BCT"
+    Tables="DAVB_DATE_SED"
+		IndSuppression="SUDATE_SED"
+		Action="CREATION" >
+        
+  <Text Position="0" Label="Date : " ColTable="DATE_SED" Nom="DATE_SED" Type="Date" Index="Oui" Longueur="10" Unique="Oui" Obligatoire="Oui">
+        <OnInit>				
+			<Result>
+          <![CDATA[  
+               //%THIS0301%=%DATOPEDAV%.substring(8,10) + "/" + %DATOPEDAV%.substring(5,7) + "/" + %DATOPEDAV%.substring(0,4) ;	              
+			  ]]>        		   
+         </Result>
+		       
+      </OnInit> 
+			<OnUpdate>
+	    <Procedure Nom="CNFDAVB()" /> 
+		
+			<Requet Tables="CONFTAB" >
+					  <Select Nom="VALCNF" Type="AlphaNumerique" ColTable="CODCNF"/>
+			</Requet>
+
+			<Requet Tables="DAVB_WORK" >
+					  <Select Nom="NBRWORK" Type="AlphaNumerique" ColTable="'0'||count(*)"/>
+			</Requet>
+			
+     
+			<Result>
+          <![CDATA[  
+             if(%THIS0101%.equals("") )
+             {
+             return;
+             }
+
+           java.text.SimpleDateFormat dateStandard = new java.text.SimpleDateFormat("dd/MM/yyyy");
+					 java.util.Date DATJOU=dateStandard.parse(%Journee%);
+					 java.util.Date DATSAI=dateStandard.parse(%THIS0101%);
+
+						 if (DATSAI.compareTo(DATJOU) !=0)
+             { 
+               %THIS0101%="ERREUR: Date saisie doit etre egale à la date du jour "+ %Journee%;
+			   return;
+
+             }
+             if(Integer.parseInt(%NBRWORK%.trim())==0)
+				{
+                 %THIS0101%="ERREUR: Le fichier DAV n'est pas encore traité (Analyse et Correction)" ;
+				 return;
+                } 
+
+			 if(%VALCNF%.equals("1") )
+				   {
+				    %THIS0101%="ERREUR: Situation non conforme...Lancer la correction SVP ";
+					return;
+                   }
+				   %THIS0102%="Nombre total de lignes à générer = " + %NBRWORK%;
+				   %THIS0103%=%VALCNF%;
+          ]]> 
+				 </Result>
+
+			</OnUpdate>			
+		</Text>
+           <SimpleText Position="NLigne" Label="" Valeur="" />
+           <SimpleText Position="2" Label="" Class="Invisible" Valeur="" />
+   
+		<Bouton Position="NLigne" Label="Générer"  Action="Valider" MsgConfirm="Confirmer cette opération" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+		
+		 <OnInit>
+
+  			<Requet Tables="DAVB_WORK" >
+					    <Select Nom="NBRW" Type="AlphaNumerique" ColTable="'0'||count(*)"/>            
+		  	</Requet>		
+	   
+				<Result>
+                       if(Integer.parseInt(%NBRW%.trim())==0)
+						{
+                          %THIS%="ERREUR: Le fichier DAV à envoyer vers SED n'est pas encore généré" ;
+                        } 
+				</Result>
+				
+ 		 </OnInit>	
+		
+
+		 <OnUpdate>
+	        
+        <Procedure Nom="CHARG_TAB_SED(%THIS0103%)" />
+
+				<Result>
+
+				</Result>
+
+ 		 </OnUpdate>
+
+		
+	</Formulaire>
+	
+</Entites>

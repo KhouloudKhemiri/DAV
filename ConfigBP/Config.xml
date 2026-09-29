@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Parametres>
+
+  <Param Nom="Nom Application" Valeur="GESTION DAV (TESTDAV)"/>
+
+  <Param Nom="ID" Valeur="02"/>
+
+  <Param Nom="IP_Aut_Server" Valeur="172.28.70.101"/>
+
+  <Param Nom="Port_Aut_Server" Valeur="7777"/>
+
+  <Param Nom="URL_Aut_Server" Valeur="/Identification/Identification?invoke=Identify"/>
+
+  
+
+  <Param Nom="URLConfig" Valeur="/opt/apache-tomcat/webapps/TESTDAV/ConfigBP/"/>
+
+  <Param Nom="URLHTML" Valeur="/opt/apache-tomcat/webapps/TESTDAV/ModelHTML/"  />
+
+  <Param Nom="URLFILE" Valeur="/opt/apache-tomcat/webapps/TESTDAV/Data/"  />
+
+  <Param Nom="URLEtat" Valeur="/opt/apache-tomcat/webapps/TESTDAV/Etat/"  />
+
+  <Param Nom="URLImage" Valeur="/opt/apache-tomcat/webapps/TESTDAV/Images/"  />
+
+  
+
+  <Param Nom="ServerEtat" Valeur="rep_biatnet"  />
+
+  <Param Nom="EtatSystem" Valeur="2"  Global="Oui" />
+
+  <Param Nom="Niveau" Valeur="0"  Global="Oui" />
+
+  <Param Nom="Journee" Libelle="Journée comptable" Valeur="28/03/2025" Header="Oui" Global="Oui" />
+
+  <Param Nom="EtatGen" Valeur="0" Global="Oui" />
+
+  <Param Nom="ConnexionDB" Valeur="test" />
+
+  <Param Nom="IPDB" Valeur="172.28.70.62:1521"  />
+
+  <Param Nom="UserDB" Valeur="testdav" />
+
+  <Param Nom="PWDDB" Valeur="testdav54321"  />
+
+</Parametres>
+

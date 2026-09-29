@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+
+		
+
+	<Formulaire Nom="Test"
+
+            Titre=" Récéption"
+
+            Tables=""
+
+      			Action=""
+
+            > 
+
+	
+
+		<SimpleText Position="NLigne"  Label="" Valeur="" />
+
+		<SimpleText Position="NLigne"  Label="" Valeur="" />
+
+
+
+		<SimpleText Position="NLigne"  Label=" NB : " Valeur="Cliquer sur le bouton Valider pour déclancher la Récéption." />
+
+
+
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" MsgAttente="Veuillez patienter, Récéption en cours " />
+
+		<Bouton Position="Auto" Label="Annuler" Action="Accueil" />
+
+		
+
+    <OnInit>
+
+   			<Result>
+
+          <![CDATA[  
+
+				   	if(Integer.parseInt(%EtatSystem%)== 1)
+
+					{
+
+					  	%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+
+					} else	
+
+					{
+
+					    if(Integer.parseInt(%Niveau%) == 1)
+
+						{
+
+						  %THIS%="ERREUR: Réception déjà effectuée";
+
+					  	} else
+
+						{
+
+					      if ((Integer.parseInt(%Niveau%) != 0) && (Integer.parseInt(%Niveau%) != 1))
+
+						    {
+
+						    %THIS%="ERREUR: Début de Journée déjà lancé, Réception non autorisée. ";
+
+					     	}
+
+						}
+
+					}
+
+          ]]> 
+
+				</Result>
+
+
+
+        <OnError>
+
+           %EtatSystem%="0";
+
+           %THIS%="ERREUR: Erreur Fatal : "+%ErrorMsg%;
+
+        </OnError>
+
+		</OnInit>
+
+		
+
+		<OnUpdate>
+
+				<Result>
+
+          <![CDATA[  
+
+				   	if(Integer.parseInt(%EtatSystem%)== 1)
+
+					{
+
+					  	%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+
+					} else	
+
+					{
+
+					    if(Integer.parseInt(%Niveau%) == 1)
+
+						{
+
+						  %THIS%="ERREUR: Réception déjà effectuée.";
+
+					  	} else
+
+						{
+
+					      if ((Integer.parseInt(%Niveau%) != 0) && (Integer.parseInt(%Niveau%) != 1))
+
+					 	    {
+
+						    %THIS%="ERREUR: Début de Journée déjà lancé, Réception non autorisée. ";
+
+					     	} else
+
+							  {
+
+  				                %EtatSystem%=1;
+
+                                File Filedavb = new File("/opt/apache-tomcat/webapps/TESTDAV/Etat/davb"); 
+
+                                Filedavb.delete(); 
+
+							  }
+
+						}
+
+					}
+
+          ]]> 
+
+				</Result>
+   
+
+		<WebService Methode = "FtpGet" >
+
+            <Set Nom="URL" >%URLEtat%</Set>
+
+            <Set Nom="File" >davb</Set>
+
+            <Set Nom="FTP_USER" >international</Set>
+
+            <Set Nom="FTP_PWD" >international7895opt@$Y</Set>
+
+            <Set Nom="FTP_HOST" >172.28.70.151</Set>
+
+        </WebService>
+
+        <WebService Methode = "FileToTable" >
+
+					<Set Nom="URL_File" >%URLEtat%davb</Set>
+
+					<Set Nom="Table" >LIGNE_DAVB</Set>
+
+          <Set Nom="Ligne" >1:0:128:A::;</Set>
+
+          <Set Nom="Separator" ></Set>
+
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+
+					<Set Nom="DBUser" >%UserDB%</Set>
+
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+
+					<Return Nom="Nb" into="THIS01" /> 
+
+          <Return Nom="NbErr" into="THIS02" /> 
+
+				</WebService>
+
+
+        <Procedure Nom="FORMATDAVB()" />
+
+
+        <WebService Methode = "FtpDel" >
+
+            <Set Nom="URL" >%URLEtat%</Set>
+
+            <Set Nom="File" >davb</Set>
+
+            <Set Nom="FTP_USER" >international</Set>
+
+            <Set Nom="FTP_PWD" >international7895opt@$Y</Set>
+
+            <Set Nom="FTP_HOST" >172.28.70.151</Set>
+
+        </WebService>
+
+
+        <Result>
+
+    				<![CDATA[	
+
+               if (%THIS02%.equals("0"))
+
+               {
+
+                 %THIS%="Confirmation: Nb. Opération recus davb : "+(Integer.parseInt(%THIS01%)+Integer.parseInt(%THIS02%))+" <br> Nb. Opération rejetées davb : "+%THIS02%+" <br> ";
+
+                 %EtatSystem%="0";	
+
+    			 %Niveau%="1";
+
+
+
+               } else
+
+               {
+
+                 %THIS%="Confirmation: Nb. Opération recus davb : "+(Integer.parseInt(%THIS01%)+Integer.parseInt(%THIS02%))+" <br> Nb. Opération rejetées davb : <span style='color:#CC0000'>"+%THIS02%+"</span>";
+
+               }
+
+               
+
+            ]]>							
+
+				</Result>
+
+
+
+        <OnError>
+
+           %THIS%="ERREUR: "+%ErrorMsg%;
+
+           %EtatSystem%=0;
+
+        </OnError>
+
+	
+    </OnUpdate>		
+
+		 
+
+	</Formulaire>
+
+	
+
+</Entites>
+

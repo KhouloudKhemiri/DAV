@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<Tableau Label="Reactivation" Titre="DECLARATION DES JOURS FERRIES" 
+	 BoutonInsertion="Non"
+         BoutonRechRapide="Oui"
+         BoutonRechAvance="Oui"
+         BoutonPDF="Non"
+         BoutonXLS="Oui"
+		 Init="Oui">
+
+	<Formulaire Nom="DECLARATION DES JOURS FERRIES"
+		Titre="DECLARATION DES JOURS FERRIES"
+    Tables="FERRIE"
+    IndSuppression="SUFER"
+    LigneClickEvent="REACTIVATION"
+		Action="REACTIVATION"
+  	ValReact="0"
+    >
+
+  <Text Position="0" Label="Jour férrier à déclarer" ColTable="DATFER" Nom="DATFER" Type="Date" Longueur="10" Unique="Oui" PositionCel="1" LongueurCel="10" LabelCel="Jour Ferrié"/>
+  <Text Position="NLigne" Label="Description" ColTable="DESFER" Nom="DESFER" Type="AlphaNumerique" Longueur="30" PositionCel="2" LongueurCel="65" LabelCel="Description"/>
+
+    
+		<Bouton Position="NLigne" Label="Valider"  Action="ValiderQuitter" MsgConfirm="Confirmer cette opération" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+
+		 <OnInit>
+				<Result>
+				</Result>
+ 		 </OnInit>	
+
+	</Formulaire>
+
+	   <OnInit>				
+				<Result>
+				</Result>
+        <OnError>
+        </OnError>			
+		</OnInit>
+	</Tableau>
+
+</Entites>

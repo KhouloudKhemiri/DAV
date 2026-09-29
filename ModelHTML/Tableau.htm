@@ -1,0 +1,53 @@
+
+<div id="%ID%_TOT"  onmouseover="document.getElementById('%ID%_MENU').style.visibility='visible';" onmouseout="document.getElementById('%ID%_MENU').style.visibility='hidden';" > 
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr >
+	<td class="Formulaire_Header" onmouseup="this.style.cursor='default';" onMouseDown='this.style.cursor="move";Mouve(event);'  >&nbsp;%TITRE%</td>
+	<td width="220" class="Formulaire_Header"  >
+		<div id="%ID%_MENU" style="visibility:hidden;"  align="right">
+		<div   id="helpMe" style="color:#006699; position:absolute; border:1px; border-style:outset; visibility:hidden; width:150px; background-color:#FFFFCC; font-size:12px; padding: 2px 2px 2px 2px; vertical-align:middle; cursor:pointer; left: 788px; top: 140px;"  align="center"> Cliquer sur une ligne pour la visualiser</div> 
+		<span style="visibility:%BXLS%"> <input class="btnXls" type="button" value="   " onclick="setChamp('%ID%','EditionXLS' );pourcent=0; timer=setInterval('BarreChargement();',500); " title="Edition format Microsoft Excel" /></span>
+		<span style="visibility:%BPDF%"> <input class="btnPdf" type="button" value="   " onclick="setChamp('%ID%','Edition' );" title="Edition format PDF"/></span>
+		<span style="visibility:%BINSERTION%"> <input class="btnAjout" type="button" value="   " onclick="ActualiserTab('%ID%')" /></span>
+		<input class="btnRefrech"   type="button" value="   " onclick="ActualiserTab('%ID%');" title="Actualiser les données" />
+		<input class="btnRech"  type="button" value="   " onclick="currentRow=-1;setChamp('%ID%01','Get' );" title="Recherche Avancée" />
+		<input class="btnHelp" type="button" value="   " onmouseout="document.getElementById('helpMe').style.visibility='hidden';" onclick="document.getElementById('helpMe').style.visibility='visible';"  />
+		
+		<input class="btnFermer" type="button" value="   " onclick="Accueil('%ID%');" title="Quitter" />
+		
+		</div>
+		
+	</td>
+</tr>
+</table>
+<br />
+<div id="Result%ID%00"></div>
+<div id="Result%ID%01"></div>
+<div style="visibility:%BRECHRAPIDE%; overflow:%BRECHRAPIDE%;"> %MAINHEADER% </div>
+<div id="%ID%_HEADER" class="HeaderTableau" onresize="this.style.width=document.getElementById('%ID%_TOT').offsetWidth;">
+
+<table  cellpadding="0" cellspacing="0">
+
+	<tr >  %HEADER% <td >&nbsp;&nbsp;&nbsp;&nbsp;</td> </tr>
+
+</table>
+</div>
+
+
+<div id="%ID%_BODY" class="CoreTableau" style="height:150px;"  onresize="this.style.width=document.getElementById('%ID%_TOT').offsetWidth;" onscroll="document.getElementById('%ID%_HEADER').scrollLeft=this.scrollLeft;if(((this.scrollHeight-this.scrollTop)<150)&&((this.scrollHeight-this.scrollTop)>20)&&(interAJAX==0)){NextTab('%ID%');}">
+<div id="%ID%_WAIT" align="center"></div>
+<table id="TAB_%ID%"  width="100%"  cellpadding="0" cellspacing="0">
+
+<TBODY ID="oTBody0_%ID%"><tr><td  align="center"><!--<br />Veilliez patienter...<br /><img src="../Images/loading.gif" />--></td></tr></TBODY>
+	
+
+</table>
+
+</div>
+<span style="color: #336699; font-style:italic;">Nombre d'enregistrement :</span><strong> <span id="Result%ID%COUNT" > </span></strong>&nbsp;&nbsp;&nbsp; <span id="Result%ID%TypeRech" Style=" font-size:12px; color:#FF0033;" > </span>
+
+</div>
+<div style="visibility:hidden;">
+<actualisation value="%ACTUALISATION%" x="%ACTUALISATION%"  id="%ID%" >%ID%</actualisation>
+</div>

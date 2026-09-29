@@ -1,0 +1,8 @@
+Ceci est le fichier du paramètrage de la connexion à la base de données , changer les valeurs après les étoiles
+Vous devez remplir l'une des deux variables serviceName ou serviceID ( selon le type de votre connection )
+serveur ** 172.28.70.62
+port ** 1521
+serviceName ** test
+serviceID ** 
+user ** devctx
+password ** devctx123 

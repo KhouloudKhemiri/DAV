@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+		
+	<Formulaire Nom="Test"
+            Titre="Transmission "
+                                          
+            Tables=""
+            
+			Action=""
+						
+            >
+	
+		
+		<Text Position="0" Label="Journée du : " ColTable=""  Disabled="Oui" Type="Date" Index="Oui"  Obligatoire="Oui" Longueur="10"  PositionCel="3" LongueurCel="5" LabelCel="Année">
+							
+		</Text>
+		
+		<SimpleText Class="Invisible" Position="NLigne"  Label="" Valeur="" />
+		<SimpleText Class="Invisible" Position="NLigne"  Label="" Valeur="" />
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" />
+		<Bouton Position="Auto" Label="Annuler" Action="Accueil" />
+		
+	 <OnInit>
+								
+				<Result>
+						if(Integer.parseInt(%EtatSystem%)== 1)
+						%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+						else
+						if(Integer.parseInt(%Niveau%) > 3)
+						%THIS%="ERREUR: Transmission déjà lancée ";
+						else if(Integer.parseInt(%Niveau%) != 3)
+						{
+						%THIS%="ERREUR:Fin de journée non effectuée";
+						}
+						else
+						{
+						%THIS01%=%Journee%;
+						%THIS02%="MQ"+%Journee%.substring(0,2)+"93";
+						%THIS03%="MP"+%Journee%.substring(0,2)+"93";
+						}						
+				</Result>
+				
+		</OnInit>	
+		 <OnUpdate>
+
+        <WebService Methode = "FtpPost" >
+            <Set Nom="URL" >%URLEtat%</Set>
+            <Set Nom="File" >%THIS02%</Set>
+            <Set Nom="FTP_USER" >trs93</Set>
+            <Set Nom="FTP_PWD" >trs93</Set>
+            <Set Nom="FTP_HOST" >172.28.70.237</Set>
+        </WebService>
+
+        <WebService Methode = "FtpPost" >
+            <Set Nom="URL" >%URLEtat%</Set>
+            <Set Nom="File" >%THIS02%.semaphor</Set>
+            <Set Nom="FTP_USER" >trs93</Set>
+            <Set Nom="FTP_PWD" >trs93</Set>
+            <Set Nom="FTP_HOST" >172.28.70.237</Set>
+        </WebService>
+
+        <WebService Methode = "FtpPost" >
+            <Set Nom="URL" >%URLEtat%</Set>
+            <Set Nom="File" >%THIS03%</Set>
+            <Set Nom="FTP_USER" >trs93</Set>
+            <Set Nom="FTP_PWD" >trs93</Set>
+            <Set Nom="FTP_HOST" >172.28.70.237</Set>
+        </WebService>
+
+        <WebService Methode = "FtpPost" >
+            <Set Nom="URL" >%URLEtat%</Set>
+            <Set Nom="File" >%THIS03%.semaphor</Set>
+            <Set Nom="FTP_USER" >trs93</Set>
+            <Set Nom="FTP_PWD" >trs93</Set>
+            <Set Nom="FTP_HOST" >172.28.70.237</Set>
+        </WebService>
+				
+				<Result>
+						%Niveau%="4";
+						%THIS%="Confirmation: Transmission éffectuée avec succès";
+				</Result>
+				
+		</OnUpdate>	
+	</Formulaire>
+	
+	
+</Entites>

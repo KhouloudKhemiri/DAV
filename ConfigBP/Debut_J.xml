@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+		
+	<Formulaire Nom="Test"
+            Titre="Début de journée "
+                                          
+            Tables=""
+            
+			Action=""
+						
+            >		
+		<Text Position="0" Label="Journée du : " ColTable=""  Type="Date" Index="Oui"  Obligatoire="Oui" Longueur="10"  PositionCel="3" LongueurCel="5" LabelCel="Année">
+			<OnUpdate>
+        <Requet Tables="DUAL"   >
+					<Select Nom="NEXTJO" Type="AlphaNumerique" ColTable="NEXT_J_OUV('%Journee%')"/>
+  		  </Requet>
+
+				 <Result>
+          <![CDATA[  
+             NEXTDAT = %NEXTJO%.substring(8, 10) + "/" + %NEXTJO%.substring(5, 7) + "/" + %NEXTJO%.substring(0, 4);
+             %THIS02% = %NEXTJO%.substring(8, 10) + "/" + %NEXTJO%.substring(5, 7) + "/" + %NEXTJO%.substring(2, 4);
+             if(%THIS01%.equals("") )
+             {
+             return;
+             }           
+             if(%THIS01%.compareTo(NEXTDAT)!=0)
+             {
+                %THIS01%="ERREUR: La journée du "+%THIS01%+" est incorrecte";
+                return;
+             }
+          ]]> 
+				 </Result>
+
+			</OnUpdate>			
+		</Text>
+
+  <SimpleText Position="NLigne" Class="Invisible" ColTable="" Label="" Valeur="" />
+
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" MsgAttente="Veuillez patienter, Début de journée en cours " />
+		<Bouton Position="Auto" Label="Quitter" Action="Accueil" />
+		
+	 <OnInit>
+				<Result>
+						if(Integer.parseInt(%EtatSystem%)== 1)
+						%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+						else
+						  if(Integer.parseInt(%Niveau%)>1)
+							%THIS%="ERREUR: Début de journée déjà lancée";
+						  else						    if(Integer.parseInt(%Niveau%)==0)							%THIS%="ERREUR: Réception n'est pas lancée";				</Result>
+	</OnInit>	
+
+  <OnUpdate>
+				<Result>
+				%EtatSystem%=1;
+				</Result>
+        <Procedure Nom="MAJ_FLDATE(TO_DATE('%THIS02%'),'%CODEUSER%')" />        <Procedure Nom="INIT_DAV()" />        <Procedure Nom="MAJ_CLT_DAVB()" />
+				<Result>
+				<![CDATA[
+						
+					%Niveau%=2;
+          %Journee%=%THIS01%;
+          %THIS%="Confirmation:Début de journée effectuée avec succès.<br>" ;
+						
+					%EtatSystem%=0;	]]>
+						
+				</Result>
+        <OnError>
+           %THIS%="ERREUR: Erreur Fatale : "+%ErrorMsg%;
+           %EtatSystem%=0;
+        </OnError>                           							
+		</OnUpdate>	
+
+	</Formulaire>
+	
+</Entites>

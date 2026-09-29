@@ -1,0 +1,23 @@
+<div align="center" >
+<div class="Formulaire_Header" align="left" style="color:#336699; font-size:16px; font-weight:bold;  font-style:italic; font-family:'Times New Roman', Times, serif; "> &nbsp;  Identification</div>
+				<br><table width='500px' height='111' border='0' cellpadding='0' cellspacing='0' >
+				<tr>
+				<td width="60%" height='37' align='right' valign='center'> Veuillez saisir votre <strong>Matricule</strong> :&nbsp;</td>
+				<td width="40%" align='center' valign='center'><div align="left">
+				  <input type='text' onKeyDown='TAB(event,this)' style="width:80px; " autocomplete="off" onKeyPress="Numerique(event);" name='CodeUser' maxlength='5'  id='CodeUser' onBlur=''>
+				  </div></td>
+				</tr>
+				<tr>
+				<td align='right' height='50' valign='center'>Veuillez saisir votre <strong>Mot de passe</strong> :&nbsp;</td>
+				<td align='center' valign='center'><div align="left">
+				  <input maxlength='6'  style="width:80px; " type='password' name='PWD' id="PWD" >
+				  </div></td>
+      </tr></table>
+	  <table width="95%" border="0" cellspacing="0">
+	   				<tr><td  height='30%'  align='right' valign='center' ><input type="button"  onclick="Identifier(document.getElementById('CodeUser').value,document.getElementById('PWD').value);return false;"   value='Valider'>&nbsp;<input name="Quitter" class="btn-more-2" onClick="parent.location='http://biatsi/intranet/'"  type="button" value='Quitter'></td>
+        </tr>
+		 <tr>
+		
+		   <td width="77%"  height='30%' valign='center'  > <div align="left" id="IdentErreur"> </div></td>
+		</tr>
+	</table></div>

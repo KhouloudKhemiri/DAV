@@ -1,0 +1,17 @@
+%DEBUTMENU%<table width="420px"   cellpadding="0" cellspacing="0" >
+		<tr><td width="400px" align="center" class="MenuHeader">Menu Principal</td></tr>
+		<tr>
+		<td class="MenuBody" width="400px">
+		%MAIN%
+		<br/> <br/>			
+		</td>
+		</tr>
+		<tr><td width="400px" class="MenuFooter"></td></tr>
+		</table>%FINMENU%
+
+%DEBUTLIEN%<div class="Lien" onClick='Select(this,"Lien");%URL%' onmouseover="MenuOver(this);"  onmouseout="MenuOut(this);">%LABEL%</div>%FINLIEN%
+%DEBUTCAT%<div id="%ID%"  class="CatMain"  >
+			<div   class="CatHedaer" test="0" onclick="if(this.test==1){MenuOut(this); MenuOut(document.getElementById('%ID%')); this.test=0;} else { MenuOver(this); MenuOver(document.getElementById('%ID%')); this.test=1; }" >%LABEL%</div>
+			<table width="100%" cellpadding="0" cellspacing="0" >
+			<tr><td   width="100%" class="CatSub" >%MAIN%</td></tr></table>
+		</div>%FINCAT%

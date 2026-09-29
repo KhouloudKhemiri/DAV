@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+		
+	<Formulaire Nom="Test"
+            Titre="Clôture"
+            Tables=""
+			Action=""
+            >
+		
+		<Text Position="0" Label="Journée du : " ColTable="" Disabled="Oui"  Type="Date" Index="Oui"  Obligatoire="Oui" Longueur="10"  PositionCel="3" LongueurCel="5" LabelCel="Année"/>
+		
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" MsgAttente="Veuillez patienter,Clôture de journée en cours " />
+		<Bouton Position="Auto" Label="Annuler" Action="Accueil" />
+		
+	 <OnInit>
+				<Result>
+					if(Integer.parseInt(%EtatSystem%)== 1)
+						%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+					else	
+					 if(Integer.parseInt(%Niveau%) != 4)
+						{
+						%THIS%="ERREUR: Transmission non effectuée ";
+						}
+					else
+						%THIS01%=%Journee%;
+				</Result>
+		</OnInit>	
+	 
+    <OnUpdate>
+		 		<Result>
+						%EtatSystem%="1";
+				</Result>
+        <Procedure Nom="ECRITURE_STATOPE()" />
+        <Procedure Nom="CTXISM_CTXCLO()" />
+				<Result>
+						%Niveau%="0";
+            %THIS%="Confirmation: Clôture effectuée avec succès.";
+						%EtatSystem%="0";
+				</Result>
+		</OnUpdate>	
+
+	</Formulaire>
+	
+	
+</Entites>

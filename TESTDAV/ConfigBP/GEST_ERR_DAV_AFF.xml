@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<Tableau Label="Modification" Titre="LISTE DES ENREGISTREMENTS DAV ANALYSES" 
+	 BoutonInsertion="Non"
+         BoutonRechRapide="Oui"
+         BoutonRechAvance="Oui"
+         BoutonPDF="Non"
+         BoutonXLS="Oui"
+		 Init="Oui">
+
+	<Formulaire Nom="LISTE DES ENREGISTREMENTS DAV ANALYSES"
+		Titre="LISTE DES ENREGISTREMENTS DAV ANALYSES"
+    Tables="DAVB_WORK"
+		IndSuppression="SUDAVB_W"
+    LigneClickEvent="MODIFICATION"
+		Action="MODIFICATION"
+			OrderBy=" DATEOPE_W, NATDEM_W"
+    >
+
+    <Text Position="0" Label="Ind" ColTable="STATUT_W" Nom="STATUT_W" Type="AlphaNumerique" Longueur="1"   Unique="Non" Disabled="Oui" PositionCel="1" LongueurCel="3" LabelCel="Ind"/>
+    <Text Position="0" Label="" ColTable="NUMSEQ_W" Nom="NUMSEQ_W" Type="AlphaNumerique" Longueur="0"   Unique="Oui" />
+	<Text Position="NLigne" Label="Date Opération" ColTable="DATEOPE_W" Nom="DATEOPE_W" Type="AlphaNumerique" Longueur="8"   Unique="Non" PositionCel="2" LongueurCel="6" LabelCel="Date Opé"/>
+	<Text Position="8" Label="IA" ColTable="IAOPE_W" Nom="IAOPE_W" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui"	PositionCel="3" LongueurCel="2" LabelCel="IA"/>
+
+	<Text Position="8" Label="Act" ColTable="NATDEM_W" Nom="NATDEM_W" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui" PositionCel="4" LongueurCel="3" LabelCel="Act" >
+      <OnUpdate>
+				<Result>
+          <![CDATA[  
+		    // ***************************** Control RIO
+		     String  Erc;
+             Erc  = "";		  
+             if (%THIS020005%.equals(""))
+             {
+             return;
+             }
+            if (%THIS020015%.equals("0843") && %THIS020005%.equals("11") && !%THIS020007%.equals("99"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020007%.equals("73"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.substring(0,2).equals("17") && !%THIS020007%.equals("91"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			%THIS020008% = Erc;
+
+		     // ***************************** Control Num.RIO
+		     String  Erc;
+             Erc  = "";
+			 String ZNUMRIO;
+			 ZNUMRIO = %THIS020009%.trim();
+            if (%THIS020009%.trim().equals("122982C") || %THIS020009%.trim().equals("122982")  ||  ZNUMRIO.substring(0,6).equals("122982"))
+            {
+         	  Erc = "E";
+            } else
+            {
+             //%THIS020010% = "";
+             //%THIS020001% = "";
+            }
+			
+	     	if (%THIS020015%.equals("0843") && %THIS020005%.equals("11") && !%THIS020009%.trim().equals("0000110F"))
+            {
+			  Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020009%.trim().equals("712471"))
+            {
+     		 Erc = "E";
+            } else
+            {
+            }
+		    %THIS020010% = Erc;
+			
+		     // ***************************** Control Date RIO
+			 String  Erc;
+             Erc  = "";
+            // controle annule et remplace par ticket 6 if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975")  && %THIS020009%.trim().equals("712471"))
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975"))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+
+			//controle ticket 13
+			if (!%THIS020015%.equals("0843") && %THIS020011%.equals(""))
+            {
+             Erc = "E";
+            } else
+            {
+            
+            }
+             
+			%THIS020012% = Erc;
+            
+			// ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			
+          ]]> 
+				</Result>
+      </OnUpdate>
+    </Text>
+
+	<Text Position="8" Label="DVS" ColTable="CODDVS_W" Nom="CODDVS_W" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Oui" PositionCel="5" LongueurCel="3" LabelCel="DVS" />
+
+	<Text Position="NLigne" Label="RIO" ColTable="CODRIO_W" Nom="CODRIO_W" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui" PositionCel="6" LongueurCel="3" LabelCel="RIO" > 
+      <OnUpdate>
+				<Result>
+          <![CDATA[  
+		    // ***************************** Control RIO
+		     String  Erc;
+             Erc  = "";		  
+             if (%THIS020007%.equals(""))
+             {
+             return;
+             }
+            if (%THIS020015%.equals("0843") && %THIS020005%.equals("11") && !%THIS020007%.equals("99"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020007%.equals("73"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.substring(0,2).equals("17") && !%THIS020007%.equals("91"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			%THIS020008% = Erc;
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E")  || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			
+          ]]> 
+				</Result>
+      </OnUpdate>
+    </Text>
+
+    <SimpleText Position="2" ColTable="STCODRIO_W" Label="" Valeur="" />
+
+	<Text Position="NLigne" Label="Num.RIO" ColTable="NUMRIO_W" Nom="NUMRIO_W" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Oui" PositionCel="7" LongueurCel="12" LabelCel="Num.RIO" >
+    <OnUpdate>
+				<Result>
+          <![CDATA[  
+		     // ***************************** Control Num.RIO
+		     String  Erc;
+             Erc  = "";
+             if (%THIS020009%.equals(""))
+             {
+             return;
+             }
+            if (%THIS020009%.trim().equals("122982C"))
+            {
+         	  Erc = "E";
+            } else
+            {
+             //%THIS020010% = "";
+             //%THIS020001% = "";
+            }
+			
+	     	if (%THIS020015%.equals("0843") && %THIS020005%.equals("11") && !%THIS020009%.trim().equals("0000110F"))
+            {
+			  Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020009%.trim().equals("712471"))
+            {
+     		 Erc = "E";
+            } else
+            {
+            }
+		    %THIS020010% = Erc;
+
+		     // ***************************** Control Date RIO
+			 String  Erc;
+             Erc  = "";
+			//controle ticket 13
+			if (!%THIS020015%.equals("0843") && %THIS020011%.trim().equals(""))
+			
+            {
+             ERC  = "E";
+            } else
+            {
+            }
+ 
+			// controle annule et remplace par ticket 6 if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975")  && %THIS020009%.trim().equals("712471"))
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975"))
+            {
+             ERC = "E";
+            } else
+            {
+            }
+            %THIS020012% = Erc; 				
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+
+			]]> 
+		    
+				</Result>
+
+     </OnUpdate>
+
+    </Text>	
+	
+	
+	<SimpleText Position="2" ColTable="STNUMRIO_W" Label="" Valeur="" />
+
+    <Text Position="NLigne" Label="Date RIO" ColTable="DATRIO_W" Nom="DATRIO_W" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="8" LongueurCel="6" LabelCel="Date RIO" >    
+    <OnUpdate>
+				<Result>
+          <![CDATA[  
+		     String  Erc;
+             Erc  = "";
+		  // ***************************** Control Date RIO
+             //if (%THIS020011%.equals(""))
+             //{
+             //return;
+             //}
+
+			//controle ticket 13
+			if (!%THIS020015%.equals("0843") && %THIS020011%.trim().equals(""))
+			
+            {
+            Erc  = "E";
+            } else
+            {
+            }
+			
+            // controle annule et remplace par ticket 6 if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975")  && %THIS020009%.trim().equals("712471"))
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975"))			
+            {
+             Erc = "E";
+            } else
+            {
+            }
+
+             
+            %THIS020012% = Erc;
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			]]> 
+				</Result>
+     </OnUpdate>
+    </Text>
+	
+	<SimpleText Position="2" ColTable="STDATRIO_W" Label="" Valeur="" />
+
+    <Text Position="NLigne" Label="Pays" ColTable="PAYBP_W" Nom="PAYBP_W" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Non" PositionCel="9" LongueurCel="3" LabelCel="Pays" >
+        <OnUpdate>
+				<Result>
+          <![CDATA[  
+			// ***************************** Control Pays
+		     String  Erc;
+             Erc  = "";
+            // if (%THIS020013%.equals(""))
+            // {
+            // return;
+            // }
+           
+		   if (%THIS020013%.equals("978") && !%THIS020015%.equals("1710"))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+		
+     		if (%THIS020013%.equals("788"))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			
+			// controle ticket 13
+			
+			if (%THIS020013%.equals(""))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			
+			%THIS020014% = Erc;
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			]]> 
+				</Result>
+     </OnUpdate>
+    </Text>
+
+	<SimpleText Position="2" ColTable="STPAYBP_W" Label="" Valeur="" />
+
+    <Text Position="NLigne" Label="C.BP" ColTable="OPEBP_W" Nom="OPEBP_W" Type="AlphaNumerique" Longueur="4" Unique="Non" PositionCel="10" LongueurCel="4" LabelCel="C.BP" >
+      <OnUpdate>
+				<Result>
+          <![CDATA[  
+			// Control ***************************** C.BP
+             if (%THIS020015%.equals(""))
+             {
+             return;
+             }
+            if (%THIS020015%.equals("1716") || %THIS020015%.equals("1718") || %THIS020015%.equals("1719")  || %THIS020015%.equals("0550") || %THIS020015%.equals("0870") || %THIS020015%.equals("0420"))
+            {
+             %THIS020016% = "E";
+             //%THIS020001% = "E";
+            } else
+            {
+             %THIS020016% = "";
+             //%THIS020001% = "";
+            }
+
+		    // ***************************** Control RIO
+		     String  Erc;
+             Erc  = "";		  
+            if (%THIS020015%.equals("0843") && %THIS020005%.equals("11") && !%THIS020007%.equals("99"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020007%.equals("73"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.substring(0,2).equals("17") && !%THIS020007%.equals("91"))
+            {
+			 Erc = "E";
+            } else
+            {
+            }
+			%THIS020008% = Erc;
+
+		     // ***************************** Control Num.RIO
+		     String  Erc;
+             Erc  = "";
+            if (%THIS020009%.trim().equals("122982C"))
+            {
+         	  Erc = "E";
+            } else
+            {
+             //%THIS020010% = "";
+             //%THIS020001% = "";
+            }
+			
+	     	if (%THIS020015%.equals("0843") && %THIS020005%.equals("11") && !%THIS020009%.trim().equals("0000110F"))
+            {
+			  Erc = "E";
+            } else
+            {
+            }
+			
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020009%.trim().equals("712471"))
+            {
+     		 Erc = "E";
+            } else
+            {
+            }
+		    %THIS020010% = Erc;
+
+		     // ***************************** Control Date RIO
+		     String  Erc;
+             Erc  = "";
+			
+			//controle ticket 13
+			if (!%THIS020015%.equals("0843") && %THIS020011%.trim().equals(""))
+			
+            {
+            Erc  = "E";
+            } else
+            {
+		        
+            }			 
+
+            // controle annule et remplace par ticket 6 if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975")  && %THIS020009%.trim().equals("712471"))
+			if (%THIS020015%.equals("0843") && %THIS020005%.equals("10") && !%THIS020011%.trim().equals("19121975"))			
+            {
+             Erc = "E";
+            } else
+            {
+            }
+
+		    %THIS020012% = Erc;			
+			// ***************************** Control Pays
+		     String  Erc;
+             Erc  = "";
+            if (%THIS020013%.equals("978") && !%THIS020015%.equals("1710"))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+		
+     		if (%THIS020013%.equals("788"))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			
+			// controle ticket 13
+			
+			if (%THIS020013%.equals(""))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			
+			%THIS020014% = Erc;
+
+			// Control ***************************** An/IA
+		     String  Erc;
+             Erc  = "";			              
+			 if ( %THIS020015%.equals("1712") && !%THIS020017%.trim().equals(%THIS020003%.substring(4,8))) 
+			 // if ( !%THIS020017%.substring(2,4).equals(%THIS020003%.substring(2,4)))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+            
+            if ( %THIS020015%.substring(0,2).equals("17") && !%THIS020015%.equals("1712") && !%THIS020017%.trim().equals("08") ) 
+			{
+             Erc = "E";
+            } else
+            {
+            }			
+			            
+            if ( !%THIS020015%.substring(0,2).equals("17") && !%THIS020017%.trim().equals(%THIS020003%.substring(4,8)) ) 
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			
+			%THIS020018% = Erc;	
+
+			// Control ***************************** typcpt
+		     String  Erc;
+             Erc  = "";
+			
+             if (%THIS020021%.equals(""))
+             {
+             return;
+             }
+			 if ( %THIS020015%.equals("1710") && !%THIS020021%.trim().equals("3") )
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			 if ( !%THIS020015%.equals("1710") && !%THIS020021%.trim().equals("2")  && %THIS020024%.trim().equals("008") )
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			 if ( !%THIS020015%.equals("1710") && !%THIS020021%.trim().equals("1")  && !%THIS020024%.trim().equals("008") )
+            {
+             Erc = "E";
+            } else
+            {
+            }			
+			%THIS020022% = Erc;			
+
+
+			  // Control ***************************** Mat Fisc
+		     String  Erc;
+             Erc  = "";
+            if (%THIS020026%.trim().equals("122982C"))
+            {
+         	  Erc = "E";
+            } else
+            {
+            }
+			
+	     	if (%THIS020015%.equals("0843") && !%THIS020026%.trim().equals("0000110F"))
+            {
+			  Erc = "E";
+            } else
+            {
+            }
+
+		    %THIS020027% = Erc;
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E")  || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			
+	      ]]> 
+				</Result>
+     </OnUpdate>
+    </Text>
+	
+	<SimpleText Position="2"  ColTable="STOPEBP_W" Label="" Valeur="" />
+
+    <Text Position="NLigne" Label="An/IA" ColTable="ANNIA_W" Nom="ANNIA_W" Type="AlphaNumerique" Longueur="4" Unique="Non" PositionCel="11" LongueurCel="5" LabelCel="An/IA" >
+      <OnUpdate>
+				<Result>
+            <![CDATA[
+			// Control ***************************** An/IA
+		     String  Erc;
+             Erc  = "";
+			
+             if (%THIS020017%.equals(""))
+             {
+             return;
+             }
+              
+			 if ( %THIS020015%.equals("1712") && !%THIS020017%.trim().equals(%THIS020003%.substring(4,8))) 
+			 // if ( !%THIS020017%.substring(2,4).equals(%THIS020003%.substring(2,4)))
+            {
+             Erc = "E";
+            } else
+            {
+            }
+            
+            if ( %THIS020015%.substring(0,2).equals("17") && !%THIS020015%.equals("1712") && !%THIS020017%.trim().equals("08") ) 
+			{
+             Erc = "E";
+            } else
+            {
+            }			
+			            
+            if ( !%THIS020015%.substring(0,2).equals("17") && !%THIS020017%.trim().equals(%THIS020003%.substring(4,8)) ) 
+            {
+			//%THIS020029% = %THIS020017%.trim();
+             Erc = "E";
+            } else
+            {
+            }
+			
+			%THIS020018% = Erc;			
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			]]> 
+				</Result>
+     </OnUpdate>
+    </Text>
+
+
+	<SimpleText Position="2"  ColTable="STANNIA_W" Label="" Valeur="" />
+
+	<Text Position="NLigne" Label="Mnt DVS" ColTable="MNTDVS_W" Nom="MNTDVS_W" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Non" PositionCel="12" LongueurCel="12" LabelCel="Mnt DVS" />
+	<Text Position="NLigne" Label="Mnt TND" ColTable="MNTTND_W" Nom="MNTTND_W" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Non" PositionCel="13" LongueurCel="12" LabelCel="Mnt TND" />
+	<Text Position="NLigne" Label="Typ" ColTable="TYPCPT_W" Nom="TYPCPT_W" Type="AlphaNumerique" Longueur="1" Unique="Non" PositionCel="14" LongueurCel="3" LabelCel="Typ" >
+  
+   <OnUpdate>
+				<Result>
+            <![CDATA[
+			// Control ***************************** typcpt
+		     String  Erc;
+             Erc  = "";
+			
+             if (%THIS020021%.equals(""))
+             {
+             return;
+             }
+			 if ( %THIS020015%.equals("1710") && !%THIS020021%.trim().equals("3") )
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			 if ( !%THIS020015%.equals("1710") && !%THIS020021%.trim().equals("2")  && %THIS020024%.trim().equals("008") )
+            {
+             Erc = "E";
+            } else
+            {
+            }
+			 if ( !%THIS020015%.equals("1710") && !%THIS020021%.trim().equals("1")  && !%THIS020024%.trim().equals("008") )
+            {
+             Erc = "E";
+            } else
+            {
+            }			
+			
+			%THIS020022% = Erc;			
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }			
+            			 
+			 ]]> 
+				</Result>
+    </OnUpdate>
+    </Text>
+
+	<SimpleText Position="2"  ColTable="STTYPCPT_W" Label="" Valeur="" />
+	
+	
+	<Text Position="8" Label="IA" ColTable="IACPT_W" Nom="IACPT_W" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Non" PositionCel="15" LongueurCel="2" LabelCel="IA" />
+	<Text Position="8" Label="Crp" ColTable="CODCRP_W" Nom="CODCRP_W" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Non" PositionCel="16" LongueurCel="3" LabelCel="Crp" />
+	<Text Position="NLigne" Label="Date Val" ColTable="DATCRP_W" Nom="DATCRP_W" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="17" LongueurCel="6" LabelCel="date Val" />
+
+	<Text Position="NLigne" Label="Mat Fisc" ColTable="CODOPR_W" Nom="CODOPR_W" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="18" LongueurCel="8" LabelCel="Mat Fisc" >
+      <OnUpdate>
+				<Result>
+			 <![CDATA[  
+			  // Control ***************************** Mat Fisc
+			 //%THIS020029% = %THIS020003%.substring(4,8);
+		     
+			 String  Erc;
+             Erc  = "";
+             if (%THIS020026%.equals(""))
+             {
+             return;
+             }
+            if (%THIS020026%.trim().equals("122982C"))
+            {
+         	  Erc = "E";
+            } else
+            {
+            }
+			
+	     	if (%THIS020015%.equals("0843") && !%THIS020026%.trim().equals("0000110F"))
+            {
+			  Erc = "E";
+            } else
+            {
+            }
+		    %THIS020027% = Erc;
+
+            // ************* Control Statut Ligne
+            if (%THIS020008%.equals("E") || %THIS020010%.equals("E") || %THIS020012%.equals("E") || %THIS020014%.equals("E") || %THIS020016%.equals("E") || %THIS020018%.equals("E")  || %THIS020022%.equals("E") || %THIS020027%.equals("E"))
+            {
+             %THIS020001% = "E";
+            } else
+            {
+             %THIS020001% = "";
+            }
+			]]> 
+				</Result>
+     </OnUpdate>
+    </Text>
+
+
+	<SimpleText Position="2" ColTable="STCODOPR_W" Label="" Valeur="" />
+	
+	<Text Position="NLigne" Label="Référence" ColTable="REFOPE_W" Nom="REFOPE_W" Type="AlphaNumerique" Longueur="20" Unique="Non" Obligatoire="Non" PositionCel="19" LongueurCel="15" LabelCel="Référence" />
+	<Text Position="8" Label="C.Ope" ColTable="CODOPE_W" Nom="CODOPE_W" Type="AlphaNumerique" Longueur="4" Unique="Non" Obligatoire="Non" PositionCel="20" LongueurCel="5" LabelCel="C.Ope" />
+
+		<Bouton Position="NLigne" Label="Valider"  Action="ValiderQuitter" MsgConfirm="" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+
+		 <OnInit>
+				<Result>
+				</Result>
+ 		 </OnInit>	
+
+	</Formulaire>
+
+	   <OnInit>				
+				<Result>
+				</Result>
+        <OnError>
+        </OnError>			
+		</OnInit>
+	</Tableau>
+
+</Entites>

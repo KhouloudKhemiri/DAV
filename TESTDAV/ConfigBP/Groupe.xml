@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Groupes>
+
+	<Groupe Nom="ADMN" >
+			<Menu Nom="Les Procédures" >
+				<Menu Nom="Récéption" Cible="Reception_J.xml"/>
+				<Menu Nom="Début de Journée" Cible="Debut_J.xml"  />
+			    <Menu Nom="Affichage historique DAV" Cible="GEST_ERR_DAV_HIS.xml" />
+				<Menu Nom="Jours Férriers"   Cible="JOUR_FERRIE_G.xml" />
+				<Menu Nom="Param"   Cible="Param-MAJ.xml" />
+			</Menu>
+
+	        <Menu Nom="Les Opérations" >		
+                      <Menu Nom="Gestion des erreurs DAV (Analyse et Correction)"  Cible="GEST_ERR_DAV_G.xml" />
+	                  <Menu Nom="Génération fichier DAV à envoyer" Cible="GEST_ERR_GEN_SED.xml" />
+	        </Menu>
+		    <Menu Nom="Fin journée" >		
+			          <Menu Nom="Envoie fichier DAV vers SED"  Cible="Envoie_SED.xml" />
+	        </Menu>
+			
+	</Groupe>	
+	
+	<Groupe Nom="CAV" >
+			<Menu Nom="Les Procédures" >
+				<Menu Nom="Récéption" Cible="Reception_J.xml"/>
+				<Menu Nom="Début de Journée" Cible="Debut_J.xml"  />
+				<Menu Nom="Affichage historique DAV" Cible="GEST_ERR_DAV_HIS.xml" />
+				<Menu Nom="Jours Férriers"   Cible="JOUR_FERRIE_G.xml" />
+	     	</Menu>
+
+	        <Menu Nom="Les Opérations" >		
+                      <Menu Nom="Gestion des erreurs DAV (Analyse et Correction)"  Cible="GEST_ERR_DAV_G.xml" />
+	                  <Menu Nom="Génération fichier DAV à envoyer" Cible="GEST_ERR_GEN_SED.xml" />
+	        </Menu>
+		    <Menu Nom="Fin journée" >		
+			          <Menu Nom="Envoie fichier DAV vers SED"  Cible="Envoie_SED.xml" />
+	        </Menu>
+			
+	</Groupe>	
+
+	</Groupes>

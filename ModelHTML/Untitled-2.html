@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+<style >
+	.message{
+	background-image:url(../Images/Alert.png);
+	background-position:center;
+	background-repeat:no-repeat;
+	height:150px;
+	width:340px;
+	position:absolute;
+	top:200px;
+	left:300px;
+	z-index:6;
+		}
+	.titreAlert{
+		
+		padding-left:5px;
+		height:20px;
+		font-size:14px;
+		font-weight:bold;
+		
+		
+		color:#0033FF;
+		
+	}
+	.messageAlert{
+		height:130px;
+		font-size:14px;
+		padding-top:20px;
+		padding-left:12px;
+		width:190px;
+	    float:left;
+	}
+	.imageAlert{
+		height:80px;
+		width:50px;
+		background-position:center;
+		background-repeat:no-repeat;
+		padding-top:0px;
+		background-image:url(../Images/exclam.png);
+		float:left;
+	}
+	
+	.imageInfo{
+		height:80px;
+		width:50px;
+		background-position:center;
+		background-repeat:no-repeat;
+		padding-top:0px;
+		background-image:url(../Images/Interogation.png);
+		float:left;
+	}
+	.imageLog{
+		height:80px;
+		width:50px;
+		background-position:center;
+		background-repeat:no-repeat;
+		padding-top:0px;
+		background-image:url(../Images/charge.gif);
+		float:left;
+	}
+	.boutonAlert{
+	 
+	 width:240px;
+	}
+</style>
+</head>
+
+
+<body>
+<div class="message" id="alert" >
+	<div style="padding: 5px 10px 10px 10px;"  >
+		<div class="titreAlert">%NOMAPPLICATION%</div>
+		<div class="imageAlert" ></div>
+		<div class="messageAlert" id="AlertText" >qsd</div>
+		<div class="boutonAlert" align="right" ><input type="button" value="  OK  " /></div>
+	</div>
+</div>
+
+<div class="message" id="info" >
+	<div style="padding: 5px 10px 10px 10px;"  >
+		<div class="titreAlert">%NOMAPPLICATION%</div>
+		<div class="imageInfo" ></div>
+		<div class="messageAlert" id="InfoText" ></div>
+		<div class="boutonAlert" align="right" ><input type="button" value="  OK  " /></div>
+	</div>
+</div>
+
+<div class="message" id="MsgCharg" >
+
+	<div style="padding: 5px 10px 10px 10px;"  >
+
+		<div class="titreAlert">qsdf</div>
+		
+		<div class="imageLog"  ></div>
+		
+		<div class="messageAlert" id="text_charg">qsdf</div>
+		<div id="LogText"  align="left" style="color:#CC3300" ></div>
+
+	</div>
+</div>
+
+<div id="MsgCharg" class="ChargementEnCours"  style="z-index:6;"  align="center">
+	<div class="Formulaire_Header" onMouseUp="this.style.cursor='default';" align="left" onMouseDown='this.style.cursor="move";Mouve(event);'  > Chargement... </div>
+	<br><span id="text_charg">Veuillez patientez, <br> Début de journée en cours</span><br><img src="../Images/loading.gif">
+	<br><div id="LogText"  align="left" style="color:#CC3300" ></div>
+	
+</div>
+	
+<div id="BarCharg" class="ChargementEnCours"  style="z-index:6;" align="center">
+	<div class="Formulaire_Header" onMouseUp="this.style.cursor='default';" align="left" onMouseDown='this.style.cursor="move";Mouve(event);'  > %NOMAPPLICATION%</div>
+	<br>Veuillez patienter, Chargement en cours... <span id="Pourcent" align="right" ></span> <br>
+	<br><div class="BarreVide" style="width:318px;" align="left"><div id="BarCharg_core" class="BarrePlainne" style="width:100%;"></div>  </div>
+	<br><div align="right"><input type="button" value="Annuler" onClick="setChamp('setPOURCENT','Aunnuler');"/></div>
+</div>
+</body>
+</html>

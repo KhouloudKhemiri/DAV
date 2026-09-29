@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<Tableau Label="Affichage" Titre="LISTE DES ENREGISTREMENTS DAV A ENVOYER A LA BCT" 
+	 BoutonInsertion="Non"
+         BoutonRechRapide="Oui"
+         BoutonRechAvance="Oui"
+         BoutonPDF="Non"
+         BoutonXLS="Oui"
+		 Init="Oui">
+
+	<Formulaire Nom="LISTE DES ENREGISTREMENTS DAV A ENVOYER A LA BCT"
+		Titre="LISTE DES ENREGISTREMENTS DAV A ENVOYER A LA BCT"
+    Tables="DAVB_SED"
+		IndSuppression="SUDAVB24S"
+    LigneClickEvent="AFFICHAGE"
+		Action="AFFICHAGE"
+			OrderBy=" DATOPE24S, NATDEM24S"
+    >
+
+ 
+    <!--<Text Position="0" Label="" ColTable="NUMSEQ_W" Nom="NUMSEQ_W" Type="AlphaNumerique" Longueur="0"   Unique="Oui" />-->
+
+	<Text Position="NLigne" Label="Date Opération" ColTable="DATOPE24S" Nom="DATOPE24S" Type="AlphaNumerique" Longueur="8"   Unique="Non" PositionCel="2" LongueurCel="6" LabelCel="Date Opé"/>
+	
+	<Text Position="8" Label="IA" ColTable="IAOPE24S" Nom="IAOPE24S" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui"	PositionCel="3" LongueurCel="2" LabelCel="IA"/>
+
+	<Text Position="8" Label="Act" ColTable="NATDEM24S" Nom="NATDEM24S" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui" PositionCel="4" LongueurCel="3" LabelCel="Act" />
+ 
+	<Text Position="8" Label="DVS" ColTable="CODDVS24S" Nom="CODDVS24S" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Oui" PositionCel="5" LongueurCel="3" LabelCel="DVS" />
+
+	<Text Position="NLigne" Label="RIO" ColTable="CODRIO24S" Nom="CODRIO24S" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui" PositionCel="6" LongueurCel="3" LabelCel="RIO" /> 
+
+	<Text Position="NLigne" Label="Num.RIO" ColTable="NUMRIO24S" Nom="NUMRIO24S" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Oui" PositionCel="7" LongueurCel="12" LabelCel="Num.RIO" />
+ 
+    <Text Position="NLigne" Label="Date RIO" ColTable="DATRIO24S" Nom="DATRIO24S" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="8" LongueurCel="6" LabelCel="Date RIO" />    
+
+    <Text Position="NLigne" Label="Pays" ColTable="PAYBP24S" Nom="PAYBP24S" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Oui" PositionCel="9" LongueurCel="3" LabelCel="Pays" />
+
+    <Text Position="NLigne" Label="C.BP" ColTable="OPEBP24S" Nom="OPEBP24S" Type="AlphaNumerique" Longueur="4" Unique="Non" PositionCel="10" LongueurCel="4" LabelCel="C.BP" />
+
+    <Text Position="NLigne" Label="An/IA" ColTable="ANNEE_IAS" Nom="ANNEE_IAS" Type="AlphaNumerique" Longueur="4" Unique="Non" PositionCel="11" LongueurCel="5" LabelCel="An/IA" />
+
+	<Text Position="NLigne" Label="Mnt DVS" ColTable="MNTDVS24S" Nom="MNTDVS24S" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Non" PositionCel="12" LongueurCel="12" LabelCel="Mnt DVS" />
+	
+	<Text Position="NLigne" Label="Mnt TND" ColTable="MNTTND24S" Nom="MNTTND24S" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Non" PositionCel="13" LongueurCel="12" LabelCel="Mnt TND" />
+	
+	<Text Position="NLigne" Label="Typ" ColTable="TYPCPT24S" Nom="TYPCPT24S" Type="AlphaNumerique" Longueur="1" Unique="Non" Obligatoire="Non" PositionCel="14" LongueurCel="3" LabelCel="Typ" />
+	
+	<Text Position="8" Label="IA" ColTable="IACPT24S" Nom="IACPT24S" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Non" PositionCel="15" LongueurCel="2" LabelCel="IA" />
+	
+	<Text Position="8" Label="Crp" ColTable="CODCRP24S" Nom="CODCRP24S" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Non" PositionCel="16" LongueurCel="3" LabelCel="Crp" />
+	
+	<Text Position="NLigne" Label="Date Val" ColTable="DATCRP24S" Nom="DATCRP24S" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="17" LongueurCel="6" LabelCel="date Val" />
+
+	<Text Position="NLigne" Label="Mat Fisc" ColTable="CODOPR24S" Nom="CODOPR24S" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="18" LongueurCel="8" LabelCel="Mat Fisc" />
+
+	<Text Position="8" Label="C.Ope" ColTable="CODOPE24S" Nom="CODOPE24S" Type="AlphaNumerique" Longueur="4" Unique="Non" Obligatoire="Non" PositionCel="20" LongueurCel="5" LabelCel="C.Ope" />
+
+	<Text Position="NLigne" Label="TEST" ColTable="" Nom="" Type="AlphaNumerique" Longueur="7" Unique="Non" Obligatoire="Non" />
+
+		<Bouton Position="NLigne" Label="Valider"  Action="ValiderQuitter" MsgConfirm="" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+
+		 <OnInit>
+				<Result>
+				</Result>
+ 		 </OnInit>	
+
+	</Formulaire>
+
+	   <OnInit>				
+				<Result>
+				</Result>
+        <OnError>
+        </OnError>			
+		</OnInit>
+	</Tableau>
+
+</Entites>

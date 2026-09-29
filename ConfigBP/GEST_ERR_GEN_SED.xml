@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<TabPage>
+		<Tab Nom="Sélection" Cible="GEST_ERR_GEN_FICH.xml" />
+		<Tab Nom="Liste" Cible="GEST_ERR_CONS_FICH.xml" />
+</TabPage>
+
+</Entites>

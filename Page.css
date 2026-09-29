@@ -1,0 +1,796 @@
+input:disabled, textarea:disabled {
+    color: rgb(84, 84, 84) !important; 
+    background-color: rgb(235, 235, 228) !important; 
+}
+
+input[type="text"][disabled] {
+    color: rgb(84, 84, 84) !important; 
+    background-color: rgb(235, 235, 228) !important; 
+}
+
+.message{
+    background-image:url(Images/Alert.png);
+    background-position:center;
+    background-repeat:no-repeat;
+    height:150px;
+    width:340px;
+    position:absolute;
+    top:200px;
+    left:300px;
+    z-index:6;
+    visibility:hidden;
+}
+.titreAlert{
+
+    padding-left:5px;
+    height:20px;
+    font-size:14px;
+    font-weight:bold;
+
+
+    color:#0033FF;
+
+}
+.messageAlert{
+    height:90px;
+    font-size:14px;
+    padding-top:20px;
+    padding-left:12px;
+    width:220px;
+    float:left;
+}
+.imageAlert{
+    height:80px;
+    width:50px;
+    background-position:center;
+    background-repeat:no-repeat;
+    padding-top:0px;
+    background-image:url(Images/exclam.png);
+    float:left;
+}
+
+.imageInfo{
+    height:80px;
+    width:50px;
+    background-position:center;
+    background-repeat:no-repeat;
+    padding-top:0px;
+    background-image:url(Images/Interogation.png);
+    float:left;
+}
+.imageLog{
+    height:80px;
+    width:50px;
+    background-position:center;
+    background-repeat:no-repeat;
+    padding-top:0px;
+    background-image:url(Images/charge.gif);
+    float:left;
+}
+.boutonAlert{
+
+    width:320px;
+}
+.dpDiv
+{
+}
+.dpTable
+{
+    BORDER-RIGHT: #aaaaaa 1px solid;
+    BORDER-TOP: #aaaaaa 1px solid;
+    FONT-SIZE: 12px;
+    BORDER-LEFT: #aaaaaa 1px solid;
+    COLOR: #505050;
+    BORDER-BOTTOM: #aaaaaa 1px solid;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans-serif;
+    HEIGHT: 188px;
+    BACKGROUND-COLOR: #d5d6d7;
+    TEXT-ALIGN: center
+}
+.dpTR
+{
+}
+.dpTitleTR
+{
+}
+.dpDayTR
+{
+}
+.dpTodayButtonTR
+{
+}
+.dpTD
+{
+    BORDER-RIGHT: #ece9d8 1px solid;
+    BORDER-TOP: #ece9d8 1px solid;
+    BORDER-LEFT: #ece9d8 1px solid;
+    BORDER-BOTTOM: #ece9d8 1px solid
+}
+.dpDayHighlightTD
+{
+    BORDER-RIGHT: #aaaaaa 1px solid;
+    BORDER-TOP: #aaaaaa 1px solid;
+    BORDER-LEFT: #aaaaaa 1px solid;
+    BORDER-BOTTOM: #aaaaaa 1px solid;
+    BACKGROUND-COLOR: #cccccc
+}
+.dpTDHover
+{
+    BORDER-RIGHT: #888888 1px solid;
+    BORDER-TOP: #888888 1px solid;
+    BORDER-LEFT: #888888 1px solid;
+    CURSOR: pointer;
+    COLOR: red;
+    BORDER-BOTTOM: #888888 1px solid;
+    BACKGROUND-COLOR: #aca998
+}
+.dpTitleTD
+{
+}
+.dpButtonTD
+{
+}
+.dpTodayButtonTD
+{
+}
+.dpDayTD
+{
+    BORDER-RIGHT: #aaaaaa 1px solid;
+    BORDER-TOP: #aaaaaa 1px solid;
+    BORDER-LEFT: #aaaaaa 1px solid;
+    COLOR: white;
+    BORDER-BOTTOM: #aaaaaa 1px solid;
+    BACKGROUND-COLOR: #cccccc
+}
+.dpTitleText
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: gray
+}
+.dpDayHighlight
+{
+    FONT-WEIGHT: bold;
+    COLOR: #4060ff
+}
+.dpButton
+{
+    PADDING-RIGHT: 0px;
+    PADDING-LEFT: 0px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    BACKGROUND: #7288ac;
+    PADDING-BOTTOM: 0px;
+    COLOR: white;
+    PADDING-TOP: 0px;
+    FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif
+}
+.dpTodayButton
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    BACKGROUND: #7288ac;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif
+}
+.HEADER1
+{
+    BACKGROUND-POSITION: 50% top;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 36px;
+    BACKGROUND-IMAGE: url(Images/ENTETE_1.gif);
+    VERTICAL-ALIGN: top;
+    WIDTH: 900px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 130px
+}
+.HEADER2
+{
+    BACKGROUND-POSITION: 50% top;
+    BACKGROUND-IMAGE: url(Images/ENTETE_2.gif);
+    BACKGROUND-REPEAT: repeat-x
+}
+.HEADER3
+{
+    BACKGROUND-POSITION: 50% top;
+    BACKGROUND-IMAGE: url(Images/ENTETE_3.gif);
+    WIDTH: 10px;
+    BACKGROUND-REPEAT: no-repeat
+}
+.BarHeaderL
+{
+    BACKGROUND-POSITION: center 50%;
+    BACKGROUND-IMAGE: url(Images/BAR_HEADER_L.png);
+    WIDTH: 17px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 30px
+}
+.BarHeaderM
+{
+    BACKGROUND-POSITION: center 50%;
+    BACKGROUND-IMAGE: url(Images/BAR_HEADER_M.png);
+    COLOR: #336699;
+    BACKGROUND-REPEAT: repeat-x
+}
+.BarHeaderR
+{
+    BACKGROUND-POSITION: center 50%;
+    BACKGROUND-IMAGE: url(Images/BAR_HEADER_R.png);
+    WIDTH: 10px;
+    BACKGROUND-REPEAT: no-repeat
+}
+.MenuHeader
+{
+    BACKGROUND-POSITION: 50% top;
+    FONT-WEIGHT: 600;
+    FONT-SIZE: 16px;:
+        /* BACKGROUND-IMAGE: url(Images/MENU_HEADER.gif);*/
+        WIDTH: 400px;
+    COLOR: #336699;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 39px
+}
+.MenuBody
+{
+    PADDING-RIGHT: 15px;
+    BACKGROUND-POSITION: 50% top;
+    PADDING-LEFT: 15px;
+    /* BACKGROUND-IMAGE: url(Images/MENU_BODY.gif);*/
+    WIDTH: 400px;
+    PADDING-TOP: 15px;
+    BACKGROUND-REPEAT: repeat-y
+}
+.MenuFooter
+{
+    BACKGROUND-POSITION: 50% top;
+    /*   BACKGROUND-IMAGE: url(Images/MENU_FOOTER.gif);*/
+    WIDTH: 400px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 50px
+}
+.MainHeaderLeft
+{
+    BACKGROUND-POSITION: 50% top;
+    BACKGROUND-IMAGE: url(Images/MAIN_HEADER_L.gif);
+    WIDTH: 7px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 7px
+}
+.MainHeaderMid
+{
+    BACKGROUND-POSITION: 50% top;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 16px;
+    BACKGROUND-IMAGE: url(Images/MAIN_HEADER_M.gif);
+    COLOR: #336699;
+    BACKGROUND-REPEAT: repeat-x;
+    FONT-STYLE: italic;
+    HEIGHT: 7px
+}
+.MainHeaderRight
+{
+    BACKGROUND-POSITION: left 50%;
+    BACKGROUND-IMAGE: url(Images/MAIN_HEADER_R.gif);
+    WIDTH: 30px;
+    BACKGROUND-REPEAT: no-repeat
+}
+.MainBodyLeft
+{
+    BACKGROUND-POSITION: 50% top;
+    BACKGROUND-IMAGE: url(Images/MAIN_BODY_L.gif);
+    WIDTH: 20px;
+    BACKGROUND-REPEAT: repeat-y
+}
+.MainBodyMid
+{
+    BACKGROUND-POSITION: center 50%;
+    BACKGROUND-IMAGE: url(Images/MAIN_BODY_M.gif);
+    BACKGROUND-REPEAT: repeat
+}
+.MainBodyRight
+{
+    BACKGROUND-POSITION: left 50%;
+    BACKGROUND-IMAGE: url(Images/MAIN_BODY_R.gif);
+    WIDTH: 20px;
+    BACKGROUND-REPEAT: repeat-y;
+    HEIGHT: 20px
+}
+.MainFooterLeft
+{
+    BACKGROUND-POSITION: right 50%;
+    BACKGROUND-IMAGE: url(Images/MAIN_FOOTER_L.gif);
+    WIDTH: 20px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 20px
+}
+.MainFooterMid
+{
+    BACKGROUND-POSITION: 50% top;
+    BACKGROUND-IMAGE: url(Images/MAIN_FOOTER_M.gif);
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 20px
+}
+.MainFooterRight
+{
+    BACKGROUND-POSITION: left 50%;
+    BACKGROUND-IMAGE: url(Images/MAIN_FOOTER_R.gif);
+    WIDTH: 20px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 20px
+}
+.Erreur
+{
+    COLOR: #ff3300;
+    BACKGROUND-COLOR: #ffffcc
+}
+.NomHeader
+{
+    FONT-SIZE: 12px;
+    COLOR: #336699
+}
+.ValueHeader
+{
+    FONT-SIZE: 12px;
+    COLOR: #666666;
+    FONT-STYLE: italic
+}
+.Text
+{
+    FONT-SIZE: 11px;
+    TEXT-TRANSFORM: uppercase;
+    HEIGHT: 17px
+}
+.List
+{
+    FONT-SIZE: 11px;
+    HEIGHT: 17px
+}
+.Label
+{
+    FONT-SIZE: 11px
+}
+.BlockFrame
+{
+    PADDING-RIGHT: 0px;
+    MARGIN-TOP: 0px;
+    PADDING-LEFT: 0px;
+    Z-INDEX: 5;
+    FILTER: alpha(opacity=40);
+    MARGIN-BOTTOM: 0px;
+    PADDING-BOTTOM: 0px;
+    WIDTH: 1px;
+    CURSOR: wait;
+    PADDING-TOP: 0px;
+    POSITION: absolute;
+
+
+
+}
+.BlockFenetre
+{
+    PADDING-RIGHT: 0px;
+    MARGIN-TOP: 0px;
+    PADDING-LEFT: 0px;
+    Z-INDEX: 5;
+    FILTER: alpha(opacity=40);
+    MARGIN-BOTTOM: 0px;
+    PADDING-BOTTOM: 0px;
+    WIDTH: 1px;
+    CURSOR: wait;
+    PADDING-TOP: 0px;
+    POSITION: absolute;
+    HEIGHT: 1px;
+
+}
+.BlockDiv
+{
+    Z-INDEX: 5;
+    CURSOR: wait;
+    POSITION: absolute;
+    FILTER: alpha(opacity=25);
+    left: 0px; top: 0px;
+
+
+}
+.Chargement
+{
+    FONT-SIZE: 12px;
+    BACKGROUND-IMAGE: url(Images/charge.gif);
+    VISIBILITY: hidden;
+    WIDTH: 120px;
+    COLOR: #cc3300;
+    BACKGROUND-REPEAT: no-repeat
+}
+.Chargement_over
+{
+    BACKGROUND-IMAGE: url(Images/charge.gif);
+    VISIBILITY: visible;
+    WIDTH: 20px;
+    BACKGROUND-REPEAT: no-repeat
+}
+
+.FormHeader
+{
+    PADDING-TOP: 5px
+}
+.tagHeader
+{
+    BACKGROUND-POSITION: left 50%;
+    DISPLAY: block;
+    PADDING-LEFT: 5px;
+    FONT-SIZE: 12px;
+    FLOAT: left;
+    BACKGROUND-IMAGE: url(Images/tagHeader.png);
+    VERTICAL-ALIGN: middle;
+    WIDTH: 105px;
+    CURSOR: pointer;
+    COLOR: #336699;
+    PADDING-TOP: 10px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 29px
+}
+.tagHeader_Over
+{
+    BACKGROUND-POSITION: left 50%;
+    DISPLAY: block;
+    PADDING-LEFT: 5px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    FLOAT: left;
+    BACKGROUND-IMAGE: url(Images/tagHeader_over.png);
+    VERTICAL-ALIGN: middle;
+    WIDTH: 105px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 10px;
+    BACKGROUND-REPEAT: no-repeat;
+    HEIGHT: 29px
+}
+.CoreTableau
+{
+    BORDER-RIGHT: #ffffff thin inset;
+    BORDER-TOP: #ffffff thin;
+    OVERFLOW: scroll;
+    BORDER-LEFT: #ffffff thin inset;
+    WIDTH: 700px;
+    BORDER-BOTTOM: #ffffff thin inset;
+    HEIGHT: 200px;
+    BACKGROUND-COLOR: #ffffff
+}
+.HeaderTableau
+{
+    BORDER-RIGHT: #ffffff thin inset;
+    BORDER-TOP: #ffffff thin inset;
+    PADDING-LEFT: 2px;
+    VERTICAL-ALIGN: top;
+    OVERFLOW: hidden;
+    BORDER-LEFT: #ffffff thin inset;
+    WIDTH: 700px;
+    BORDER-BOTTOM: #ffffff thin inset;
+    HEIGHT: 35px;
+    border-botton-style: none
+}
+.Cellule
+{
+    BORDER-RIGHT: #cccccc thin solid;
+    FONT-SIZE: 11px;
+    VERTICAL-ALIGN: middle;
+    OVERFLOW: hidden;
+    WIDTH: 100%;
+    CURSOR: pointer;
+    BORDER-BOTTOM: #cccccc thin solid;
+    HEIGHT: 20px
+}
+.CelluleHeader
+{
+    BORDER-RIGHT: #cccccc thin solid;
+    BACKGROUND-POSITION: 50% top;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    BACKGROUND-IMAGE: url(Images/chb.gif);
+    OVERFLOW: hidden;
+    COLOR: #ffffff;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 35px
+}
+.Ligne
+{
+    BACKGROUND-COLOR: #f2f2f2
+}
+.Ligne:visited
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.Ligne_Over
+{
+    BACKGROUND-COLOR: #dbe2e3
+}
+.btnRefrech
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_ACTUA.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: repeat-x;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.btnRech
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_RECH.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: repeat-x;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.btnAjout
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_AJOUT.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: repeat-x;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.btnHelp
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_HELP.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: repeat-x;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.btnXls
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_XLS.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: repeat-x;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.btnPdf
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_PDF.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: no-repeat;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.btnFermer
+{
+    BORDER-RIGHT: #a9c5cf 1px solid;
+    PADDING-RIGHT: 2px;
+    BACKGROUND-POSITION: center 50%;
+    BORDER-TOP: #a9c5cf 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    RIGHT: 7px;
+    BACKGROUND-IMAGE: url(Images/ICONE_FERMER.png);
+    PADDING-BOTTOM: 1px;
+    MARGIN: 0px;
+    BORDER-LEFT: #a9c5cf 1px solid;
+    WIDTH: 19px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #a9c5cf 1px solid;
+    BACKGROUND-REPEAT: no-repeat;
+    WHITE-SPACE: nowrap;
+    POSITION: relative;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d6e4e9;
+    TEXT-ALIGN: center
+}
+.Fenetre
+{
+    Z-INDEX: 3;
+    BORDER-LEFT-COLOR: #0099CC;
+    LEFT: 266px;
+    BORDER-BOTTOM-COLOR: #0099CC;
+    WIDTH: 720px;
+
+    BORDER-TOP-COLOR: #0099CC;
+
+
+    POSITION: absolute;
+    TOP: 130px;
+    BACKGROUND-COLOR: #eaeaea;
+    BORDER-RIGHT-COLOR:#0099CC;
+    border-width:thin;
+    border-style:solid;
+
+}
+.GroupeLegende
+{
+    CURSOR: pointer;
+    COLOR: #336699;
+    BACKGROUND-COLOR: #f0f0f0
+}
+.Groupe
+{
+    VISIBILITY: hidden;
+    OVERFLOW: hidden;
+    HEIGHT: 1px
+}
+.Groupe_Over
+{
+    VISIBILITY: visible;
+    OVERFLOW: visible;
+    HEIGHT: auto
+}
+.Formulaire_Header
+{
+    FONT-SIZE: 16px;
+    BACKGROUND-IMAGE: url(Images/grd-4px.gif);
+    CURSOR: default;
+    COLOR: #336699;
+    BORDER-BOTTOM: #336699 thin double;
+    HEIGHT: 25px
+}
+.Recherche_Rapide
+{
+    FONT-SIZE: 12px;
+    BACKGROUND-IMAGE: url(Images/grd-4px.gif);
+    CURSOR: default;
+    COLOR: #666666;
+    PADDING-TOP: 10px
+}
+.Description
+{
+    FONT-SIZE: 11px;
+    COLOR: #336699
+}
+.SimpleText
+{
+    COLOR:#336699;
+    font-size: 11px;
+
+}
+.Attention
+{
+    COLOR: #cc0000
+}
+.ChargementEnCours
+{
+
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    LEFT: 297px;
+    VISIBILITY: hidden;
+
+    WIDTH: 360px;
+    COLOR: #336699;
+
+    POSITION: absolute;
+    TOP: 235px;
+    HEIGHT: 23px;
+    BACKGROUND-COLOR: #ffffff;
+    border-width:thin;
+    border-color:#006699;
+    padding: 0 3 3 0; 
+    BORDER-STYLE:solid
+}
+.BarreVide
+{
+    BACKGROUND-IMAGE: url(Images/Barre.png)
+}
+.BarrePlainne
+{
+    BACKGROUND-POSITION: left 50%;
+    BACKGROUND-IMAGE: url(Images/BarreCarger.png);
+    WIDTH: 318px;
+    BACKGROUND-REPEAT: repeat
+}
+.Invisible
+{
+    COLOR: lightcyan;
+    visibility: hidden;
+}
+.Bannier_Over
+{
+    OVERFLOW: hidden;
+    HEIGHT: 30px;
+
+}
+.Bannier
+{
+}

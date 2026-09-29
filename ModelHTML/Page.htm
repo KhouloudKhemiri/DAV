@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+
+
+<html >
+    <head>
+        <meta http-equiv="Content-Type"  content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Pragma" content="no-cache">
+        <title>%TITRE%</title>
+        <link href="../Page.css" rel="stylesheet" type="text/css">
+        <link href="../Menu.css" rel="stylesheet" type="text/css" />
+        <script  language="javascript" src="../DatePiker.js"></script>
+        <script  language="javascript" src="../Affichage.js"></script>
+        <script  language="javascript" src="../Deplacement.js"></script>
+        <script  language="javascript" src="../Ident.js"></script>
+        <script language="javascript" src="../setForme.js"></script>
+        <script language="javascript" src="../setChamp.js"></script>
+        <script  language="javascript" src="../validate.js"></script>
+        <script  language="javascript" src="../Tableau.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script  language="javascript" src="../worker/extractNiveauWorker.js"></script>
+
+
+    </head>
+    <!--  onselectstart="return false;" -->
+    <body     style="background-color:transparent;" onbeforeunload="ask_for_close();"  marginheight="0" marginwidth="0"  leftmargin="10" rightmargin="0" topmargin="0" onbeforeunload="confirmRefresh();>
+              <bgsound src="#" id="soundeffect" loop=1 autostart="true" /> 
+    <iframe id='Blockage' class="BlockFrame" frameborder='0'   scrolling='no' src='about:blank'></iframe>
+
+    <div id='divBlockage' class="BlockDiv" ></div>
+    <div class="message" id="MsgCharg" >
+
+        <div style="padding: 5px 10px 10px 10px;"  >
+
+            <div class="titreAlert">%NOMAPPLICATION%</div>
+
+            <div class="imageLog"  ></div>
+
+            <div class="messageAlert" id="text_charg">Veuillez patienter</div>
+            <div id="LogText"  align="left" style="color:#CC3300; " ></div>
+
+        </div>
+    </div>
+    <div class="message" id="alert" >
+        <div style="padding: 5px 10px 10px 10px;"  >
+            <div class="titreAlert">%NOMAPPLICATION%</div>
+            <div class="imageAlert" ></div>
+            <div class="messageAlert" id="AlertText" ></div>
+            <div class="boutonAlert" align="right" ><input type="button" id="AlertMsgB" value="  OK  "  onClick="DeBlock('body');
+                    if (ElementErreur != null) {
+                        try {
+                            ElementErreur.select();
+                        } catch (e) {
+                            ElementErreur.focus();
+                        }
+                    }"/></div>
+        </div>
+    </div>
+
+    <div class="message" id="info" >
+        <div style="padding: 5px 10px 10px 10px;"  >
+            <div class="titreAlert">%NOMAPPLICATION%</div>
+            <div class="imageInfo" ></div>
+            <div class="messageAlert" id="InfoText" ></div>
+            <div class="boutonAlert" align="right" ><input type="button" value="  OK  " onClick="DeBlock('body');" /></div>
+        </div>
+    </div>
+
+
+    <div class="message" id="BarCharg" >
+        <div style="padding: 5px 10px 10px 10px;"  >
+            <div class="titreAlert">%NOMAPPLICATION%</div>
+            <br>
+            Veuillez patienter, Chargement en cours... <span id="Pourcent" align="right" ></span> <br>
+            <br>
+            <div class="BarreVide" style="width:318px;" align="left"><div id="BarCharg_core" class="BarrePlainne" style="width:100%;"></div>  </div>
+
+            <div class="boutonAlert" align="right" ><input type="button" value="Annuler" onClick="setChamp('setPOURCENT', 'Aunnuler');"/></div>
+
+        </div>
+    </div>
+
+    <table id="body" width="950px" height="100%" style="vertical-align:top;"  align="center" >
+
+
+        <tr>
+            <td valign="top" align="center">
+
+                <!-- HEADER -->
+                <div id="Bannier" class="Bannier" >
+                    <table width="100%"  cellpadding="0" cellspacing="0" >
+                        <tr>
+                            <td class="HEADER1" id ="HEADER1" align="right" ><span style=" font-size:14px; vertical-align:middle; color:#336699; cursor:pointer;" onClick="location.replace('index?Deconnexion=true');" align='right'><img src="../Images/DECONNEXION.png" width="25" height="22" align="absmiddle"><U>Quitter l'application</U>  |</span> <span id="reduir" style=" font-size:14px; vertical-align:middle; color:#336699; cursor:pointer;" onClick='ClickBannier("Bannier")'  align='right'><U>Reduire</U></span><br><br>%NOMAPPLICATION%</td>
+                            <td  class="HEADER2">&nbsp;</td>
+                            <td class="HEADER3"></td>
+                        </tr>
+                    </table>
+                </div><!-- BAR - HEADER -->
+                <table width="100%"  cellpadding="0" cellspacing="0"  >
+                    <tr>
+                        <td class="BarHeaderL" >&nbsp; </td>
+                        <td class="BarHeaderM" >%DATE% |<span id="ResultHEADER"> %HEADER% </span></td>
+                        <td class="BarHeaderM" align="right" ><span id="CHG" class="Chargement" >Veuillez patienter ...</span></td>
+                        <td class="BarHeaderR" >&nbsp;</td>
+                    </tr>
+                </table>
+
+                <!-- MAIN -->
+                <table width="100%"    cellpadding="0" cellspacing="0" >
+                    <tr>
+                        <td valign="top"  width="1%" >
+                            <span style="padding:10px 5px 5px 5px; overflow:hidden; "   >%MENU%</span>
+                        </td>
+                        <td valign="top"  align="center" style="padding:10px 0px 5px 5px; ">
+                            <form id="FormMain" action="#" method="post"  >
+                                <table  id="Core" width="750px"    cellpadding="0" cellspacing="0" >
+                                    <tr>
+                                        <td  class="MainHeaderLeft"></td>
+                                        <td class="MainHeaderMid"></td>
+                                        <td id="MenuForm" class="MainHeaderMid"></td>
+                                        <td  class="MainHeaderRight"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="MainBodyLeft"></td>
+                                        <td colspan="2" id="Main" class="MainBodyMid">%MAIN%</td>
+                                        <td class="MainBodyRight"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="MainFooterLeft"></td>
+                                        <td colspan="2" class="MainFooterMid"></td>
+                                        <td class="MainFooterRight"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </td>
+                    </tr></table>
+
+            </td>
+        </tr>
+        <tr><td   valign="bottom"><div align="center" style=" position:relative;  font:Verdana, Arial, Helvetica, sans-serif; color:#336699; font-style:italic; font-size:14px;">
+                    ©2008 - BANQUE INTERNATIONALE ARABE DE TUNISIE </div>
+            </td></tr>
+    </table>
+</body>
+</html>
+
+
+
+
+<script>
+                var worker;
+
+                function startWorker()
+                {
+                    // Initialize web worker
+                    worker = new Worker("/worker/extractNiveauWorker.js");
+                }
+
+
+                function stopWorker() {
+                    // Stop the worker
+                    worker.terminate();
+                }
+
+                function confirmRefresh()
+
+                {
+                    stopWorker();
+                }
+</script>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+<Tableau Label="Affichage" Titre="LISTE DES ENREGISTREMENTS DAV ARCHIVES" 
+	 BoutonInsertion="Non"
+         BoutonRechRapide="Oui"
+         BoutonRechAvance="Oui"
+         BoutonPDF="Non"
+         BoutonXLS="Oui"
+		 Init="Oui">
+
+	<Formulaire Nom="LISTE DES ENREGISTREMENTS DAV ARCHIVES"
+		Titre="LISTE DES ENREGISTREMENTS DAV ARCHIVES"
+    Tables="INS_DAVB"
+		IndSuppression="SUDAVBI"
+    LigneClickEvent="AFFICHAGE"
+		Action="AFFICHAGE"
+			OrderBy=" DATOPE24I, NATDEM24I"
+    >
+
+ 
+    <Text Position="0" Label="" ColTable="NUMSEQ24I" Nom="NUMSEQ_W" Type="AlphaNumerique" Longueur="0"   Unique="Oui" />
+	<Text Position="NLigne" Label="Date Opération" ColTable="DATOPE24I" Nom="DATOPE24I" Type="AlphaNumerique" Longueur="8"   Unique="Non" PositionCel="2" LongueurCel="6" LabelCel="Date Opé"/>
+	
+	<Text Position="8" Label="IA" ColTable="IAOPE24I" Nom="IAOPE24I" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui"	PositionCel="3" LongueurCel="2" LabelCel="IA"/>
+
+	<Text Position="8" Label="Act" ColTable="NATDEM24I" Nom="NATDEM24I" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui" PositionCel="4" LongueurCel="3" LabelCel="Act" />
+ 
+	<Text Position="8" Label="DVS" ColTable="CODDVS24I" Nom="CODDVS24I" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Oui" PositionCel="5" LongueurCel="3" LabelCel="DVS" />
+
+	<Text Position="NLigne" Label="RIO" ColTable="CODRIO24I" Nom="CODRIO24I" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Oui" PositionCel="6" LongueurCel="3" LabelCel="RIO" /> 
+
+	<Text Position="NLigne" Label="Num.RIO" ColTable="NUMRIO24I" Nom="NUMRIO24I" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Oui" PositionCel="7" LongueurCel="12" LabelCel="Num.RIO" />
+ 
+    <Text Position="NLigne" Label="Date RIO" ColTable="DATRIO24I" Nom="DATRIO24I" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="8" LongueurCel="6" LabelCel="Date RIO" />    
+
+    <Text Position="NLigne" Label="Pays" ColTable="PAYBP24I" Nom="PAYBP24I" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Oui" PositionCel="9" LongueurCel="3" LabelCel="Pays" />
+
+    <Text Position="NLigne" Label="C.BP" ColTable="OPEBP24I" Nom="OPEBP24I" Type="AlphaNumerique" Longueur="4" Unique="Non" PositionCel="10" LongueurCel="4" LabelCel="C.BP" />
+
+    <Text Position="NLigne" Label="An/IA" ColTable="ANNEE_IAI" Nom="ANNEE_IAI" Type="AlphaNumerique" Longueur="4" Unique="Non" PositionCel="11" LongueurCel="5" LabelCel="An/IA" />
+
+	<Text Position="NLigne" Label="Mnt DVS" ColTable="MNTDVS24I" Nom="MNTDVS24I" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Non" PositionCel="12" LongueurCel="12" LabelCel="Mnt DVS" />
+	
+	<Text Position="NLigne" Label="Mnt TND" ColTable="MNTTND24I" Nom="MNTTND24I" Type="AlphaNumerique" Longueur="15" Unique="Non" Obligatoire="Non" PositionCel="13" LongueurCel="12" LabelCel="Mnt TND" />
+	
+	<Text Position="NLigne" Label="Typ" ColTable="TYPCPT24I" Nom="TYPCPT24I" Type="AlphaNumerique" Longueur="1" Unique="Non" Obligatoire="Non" PositionCel="14" LongueurCel="3" LabelCel="Typ" />
+	
+	<Text Position="8" Label="IA" ColTable="IACPT24I" Nom="IACPT24I" Type="AlphaNumerique" Longueur="2" Unique="Non" Obligatoire="Non" PositionCel="15" LongueurCel="2" LabelCel="IA" />
+	
+	<Text Position="8" Label="Crp" ColTable="CODCRP24I" Nom="CODCRP24I" Type="AlphaNumerique" Longueur="3" Unique="Non" Obligatoire="Non" PositionCel="16" LongueurCel="3" LabelCel="Crp" />
+	
+	<Text Position="NLigne" Label="Date Val" ColTable="DATCRP24I" Nom="DATCRP24I" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="17" LongueurCel="6" LabelCel="date Val" />
+
+	<Text Position="NLigne" Label="Mat Fisc" ColTable="CODOPR24I" Nom="CODOPR24I" Type="AlphaNumerique" Longueur="8" Unique="Non" Obligatoire="Non" PositionCel="18" LongueurCel="8" LabelCel="Mat Fisc" />
+	
+	<Text Position="NLigne" Label="Référence" ColTable="REFOPE24I" Nom="REFOPE24I" Type="AlphaNumerique" Longueur="20" Unique="Non" Obligatoire="Non" PositionCel="19" LongueurCel="15" LabelCel="Référence" />
+	<Text Position="8" Label="C.Ope" ColTable="CODOPE24I" Nom="CODOPE24I" Type="AlphaNumerique" Longueur="4" Unique="Non" Obligatoire="Non" PositionCel="20" LongueurCel="5" LabelCel="C.Ope" />
+	
+	<Text Position="NLigne" Label="Nom Ordre" ColTable="NOMORD24I" Nom="NOMORD24I" Type="AlphaNumerique" Longueur="30" Unique="Non" Obligatoire="Non" PositionCel="21" LongueurCel="30" LabelCel="Nom Ordre" />
+	
+	<Text Position="NLigne" Label="Nom Benef" ColTable="NOMBNF24I" Nom="NOMBNF24I" Type="AlphaNumerique" Longueur="30" Unique="Non" Obligatoire="Non" PositionCel="22" LongueurCel="30" LabelCel="Nom Benef" />
+
+		<Bouton Position="NLigne" Label="Valider"  Action="ValiderQuitter" MsgConfirm="" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+
+		 <OnInit>
+				<Result>
+				</Result>
+ 		 </OnInit>	
+
+	</Formulaire>
+
+	   <OnInit>				
+				<Result>
+				</Result>
+        <OnError>
+        </OnError>			
+		</OnInit>
+	</Tableau>
+
+</Entites>

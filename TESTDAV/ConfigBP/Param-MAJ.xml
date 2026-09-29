@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+
+	<Formulaire Nom="MAJ PARAMETRES"
+		Titre="MAJ PARAMETRES"
+    Tables=""
+    IndSuppression=""
+		Action="CREATION" >
+
+  <Text Position="NLigne" Label="EtatSystem" ColTable="" Nom="EtatSystem" Type="AlphaNumerique" Longueur="1" Obligatoire="Oui" Disabled="Oui" Unique="Oui" >
+      <OnInit>
+				<Result>
+          %THIS01%=%EtatSystem%;
+				</Result>
+ 		  </OnInit>
+  </Text>
+  <Text Position="20" Label="EtatSystem (nouvelle valeur)" ColTable="" Nom="EtatSystem (nouvelle valeur)" Type="AlphaNumerique" Longueur="1" Obligatoire="Oui" Unique="Oui" >
+      <OnUpdate>
+				<Result>
+          %EtatSystem%=%THIS02%;
+				</Result>
+ 		  </OnUpdate>
+  </Text>
+
+  <Text Position="NLigne" Label="Niveau" ColTable="" Nom="Niveau" Type="AlphaNumerique" Longueur="1" Obligatoire="Oui" Disabled="Oui" Unique="Oui" >
+      <OnInit>
+				<Result>
+          %THIS03%=%Niveau%;
+				</Result>
+ 		  </OnInit>
+  </Text>
+  <Text Position="20" Label="Niveau (nouvelle valeur)" ColTable="" Nom="Niveau (nouvelle valeur)" Type="AlphaNumerique" Longueur="1" Obligatoire="Oui" Unique="Oui" >
+      <OnUpdate>
+				<Result>
+          %Niveau%=%THIS04%;
+				</Result>
+ 		  </OnUpdate>
+  </Text>
+
+  <Text Position="NLigne" Label="Journee" ColTable="" Nom="Journee" Type="Date" Longueur="10" Obligatoire="Oui" Disabled="Oui" Unique="Oui" >
+      <OnInit>
+				<Result>
+          %THIS05%=%Journee%;
+				</Result>
+ 		  </OnInit>
+  </Text>
+  <Text Position="20" Label="Journee (nouvelle valeur)" ColTable="" Nom="Journee (nouvelle valeur)" Type="Date" Longueur="10" Obligatoire="Oui" Unique="Oui" >
+      <OnUpdate>
+				<Result>
+          %Journee%=%THIS06%;
+				</Result>
+ 		  </OnUpdate>
+  </Text>
+
+  <Text Position="NLigne" Label="EtatGen" ColTable="" Nom="EtatGen" Type="AlphaNumerique" Longueur="1" Obligatoire="Oui" Disabled="Oui" Unique="Oui" >
+      <OnInit>
+				<Result>
+          %THIS07%=%EtatGen%;
+				</Result>
+ 		  </OnInit>
+  </Text>
+
+  <Text Position="20" Label="EtatGen (nouvelle valeur)" ColTable="" Nom="EtatGen (nouvelle valeur)" Type="AlphaNumerique" Longueur="1" Obligatoire="Oui" Unique="Oui" >
+      <OnUpdate>
+				<Result>
+          %EtatGen%=%THIS08%;
+				</Result>
+ 		  </OnUpdate>
+  </Text>
+   
+		<Bouton Position="NLigne" Label="Valider"  Action="Valider" MsgConfirm="Confirmer cette opération" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+
+		 <OnInit>
+				<Result>
+				</Result>
+ 		 </OnInit>	
+
+	</Formulaire>
+
+</Entites>

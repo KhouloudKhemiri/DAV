@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+		
+	<Formulaire Nom="Test"
+            Titre="Fin de journée "
+                                          
+            Tables=""
+            
+			Action=""
+						
+            >
+	
+		
+		<Text Position="0" Label="Journée du : " ColTable="" Disabled="Oui"  Type="Date" Index="Oui"  Obligatoire="Oui" Longueur="10"  PositionCel="3" LongueurCel="5" LabelCel="Année">
+							
+		</Text>
+		
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" MsgAttente="Veuillez patienter, Fin de journée en cours " />
+		<Bouton Position="Auto" Label="Annuler" Action="Accueil" />
+		
+	   <OnInit>
+			    <Requet Tables="CNFTAB" >
+					  <Select Nom="CONF" Type="AlphaNumerique" ColTable="CODCNF"/>            
+				  </Requet>
+								
+				<Result>
+            if (!%CONF%.equals("0"))
+            {
+             %THIS% = "ERREUR: Journée non conforme";
+             return;
+            }
+						if(Integer.parseInt(%EtatSystem%)== 1)
+						%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+						else
+						if(Integer.parseInt(%Niveau%) > 2)
+						%THIS%="ERREUR: Fin de journée déjà lancée ";
+						else if(Integer.parseInt(%Niveau%) != 2)
+						{
+						%THIS%="ERREUR: Début de journée non effectuée ";
+						}
+						else
+						{
+						%THIS01%=%Journee%;
+						
+						%THIS04%=%URLEtat%+"MQ"+%Journee%.substring(0,2)+"93";
+						}						
+				</Result>
+				
+		</OnInit>	
+		 <OnUpdate>
+				<Result>
+					%EtatSystem%=1;
+  					%Niveau%=3;
+				</Result>	
+
+        <Procedure Nom="DATESTAT('FIN_J', 'D')" />
+        <Procedure Nom="CTXISM_CTXISMF()" />
+        <Procedure Nom="CH1099()" />
+        <Procedure Nom="MM1030()" />      
+        <Procedure Nom="CR3097A()" />
+        <Procedure Nom="CR3097B()" />
+        <Procedure Nom="DELFIC()" />
+        <Procedure Nom="BFL2999('F')" />
+        
+        <Procedure Nom="FORMAT1000()" />
+        <Procedure Nom="FORMAT1019()" />
+        <Procedure Nom="FORMAT1030M()" />
+        <Procedure Nom="FORMAT3098()" />
+        <Procedure Nom="FORMAT1003()" />
+        <Procedure Nom="FORMAT4003()" />
+        <Procedure Nom="FORMAT2910M()" />
+        <Procedure Nom="FORMAT3097()" />
+        <Procedure Nom="FORMAT3195()" />
+        <Procedure Nom="FORMAT1073()" />
+        <Procedure Nom="FORMAT1061()" />
+        <Procedure Nom="FORMAT1062()" />
+        <Procedure Nom="FORMAT1071()" />
+        <Procedure Nom="FORMAT1090()" />
+        <Procedure Nom="FORMAT1091()" />
+        <Procedure Nom="FORMAT1030()" />
+        <Procedure Nom="FORMAT1066()" />
+        <Procedure Nom="FORMAT3099()" />
+        <Procedure Nom="FORMAT2999()" />
+        <Procedure Nom="FORMATXXXX()" />
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR1000</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1000</Set>
+          <Set Nom="Ligne" >1:0:232:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR1019</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1019</Set>
+          <Set Nom="Ligne" >1:0:124:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR1030</Set>
+					<Set Nom="Select" >select * from LIGNE_ME1030</Set>
+          <Set Nom="Ligne" >1:0:504:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR3098</Set>
+					<Set Nom="Select" >select * from LIGNE_FL3098</Set>
+          <Set Nom="Ligne" >1:0:56:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR1003</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1003</Set>
+          <Set Nom="Ligne" >1:0:230:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR4003</Set>
+					<Set Nom="Select" >select * from LIGNE_FL4003</Set>
+          <Set Nom="Ligne" >1:0:200:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR2910</Set>
+					<Set Nom="Select" >select * from LIGNE_ME2910</Set>
+          <Set Nom="Ligne" >1:0:504:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR3097</Set>
+					<Set Nom="Select" >select * from LIGNE_FL3097</Set>
+          <Set Nom="Ligne" >1:0:56:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL3195</Set>
+					<Set Nom="Select" >select * from LIGNE_FL3195</Set>
+          <Set Nom="Ligne" >1:0:108:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1073</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1073</Set>
+          <Set Nom="Ligne" >1:0:156:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1061</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1061</Set>
+          <Set Nom="Ligne" >1:0:128:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1062</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1062</Set>
+          <Set Nom="Ligne" >1:0:128:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1071</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1071</Set>
+          <Set Nom="Ligne" >1:0:128:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1090</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1090</Set>
+          <Set Nom="Ligne" >1:0:156:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1091</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1091</Set>
+          <Set Nom="Ligne" >1:0:156:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1030</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1030</Set>
+          <Set Nom="Ligne" >1:0:512:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL1066</Set>
+					<Set Nom="Select" >select * from LIGNE_FL1066</Set>
+          <Set Nom="Ligne" >1:0:180:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%FL3099</Set>
+					<Set Nom="Select" >select * from LIGNE_FL3099</Set>
+          <Set Nom="Ligne" >1:0:64:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+        <WebService Methode = "TableToFile" >
+					<Set Nom="URL_File" >%URLEtat%TR2999</Set>
+					<Set Nom="Select" >select * from LIGNE_FL2999</Set>
+          <Set Nom="Ligne" >1:0:120:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS05" /> 
+          <Return Nom="NbErr" into="THIS06" /> 
+				</WebService>
+
+				<WebService Methode = "GenMQ"  >
+					<Set Nom="URL_File" >%URLEtat%</Set>
+					<Set Nom="Service" >93</Set>
+          <Set Nom="URL_Result" >%URLEtat%</Set>
+          <Set Nom="Journee" >%Journee%</Set>
+					<Set Nom="FileOrig" >TR1000;TR1019;TR1030;TR3098;TR1003;TR4003;TR2910;TR3097</Set>
+					<Set Nom="Lng" >232;124;504;56;230;200;504;56</Set>
+					<Set Nom="TypeTrs" >MQ</Set>
+					<Return Nom="Nbligne" into="THIS02" /> 
+          <Return Nom="Erreur" into="THIS03" /> 
+				</WebService>
+
+				<WebService Methode = "GenMQ"  >
+					<Set Nom="URL_File" >%URLEtat%</Set>
+					<Set Nom="Service" >93</Set>
+          <Set Nom="URL_Result" >%URLEtat%</Set>
+          <Set Nom="Journee" >%Journee%</Set>
+					<Set Nom="FileOrig" >FL3195;FL1073;FL1061;FL1062;FL1071;FL1090;FL1091;FL1030;FL1066;FL3099;TR2999</Set>
+					<Set Nom="Lng" >108;156;128;128;128;156;156;512;180;64;120</Set>
+					<Set Nom="TypeTrs" >MP</Set>
+					<Return Nom="Nbligne" into="THIS07" /> 
+          <Return Nom="Erreur" into="THIS08" /> 
+				</WebService>
+
+            <Procedure Nom="DATESTAT('FIN_J', 'F')" />
+
+				<Result>
+				<![CDATA[
+					if (%THIS03%.compareTo("")==0 && %THIS08%.compareTo("")==0)
+					{
+            %THIS%="Confirmation:Fin de journée effectuée avec succès.<br>" ;
+		  			%EtatSystem%=0;
+					}
+					else
+					{
+            %THIS%="ERREUR: "+%THIS03%+ " "+%THIS08%;
+            %EtatSystem%=0;
+					}
+        ]]>
+				</Result>			
+        
+        <OnError>
+           %THIS%="ERREUR: "+%ErrorMsg%;
+           %EtatSystem%=0;
+        </OnError> 
+				
+		</OnUpdate>	
+	</Formulaire>
+	
+	
+</Entites>

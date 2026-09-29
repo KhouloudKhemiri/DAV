@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Entites>
+
+	<Formulaire Nom="DECLARATION DES JOURS FERRIES"
+		Titre="DECLARATION DES JOURS FERRIES"
+    Tables="FERRIE"
+    IndSuppression="SUFER"
+		Action="CREATION" >
+
+  <Text Position="0" Label="Jour férrier à déclarer" ColTable="DATFER" Nom="DATFER" Type="Date" Longueur="10" Obligatoire="Oui" Unique="Oui" >
+      <OnUpdate>
+				<Result>
+          <![CDATA[  
+           java.text.SimpleDateFormat dateStandard = new java.text.SimpleDateFormat("dd/MM/yyyy");
+					 java.util.Date DATOPE=dateStandard.parse(%Journee%);
+					 java.util.Date DATJFR=dateStandard.parse(%THIS0101%);
+
+						 if ((DATJFR.compareTo(DATOPE)<0) || (DATJFR.compareTo(DATOPE)==0))
+             { 
+               %THIS0101%="ERREUR: Date ferrié doit etre > à la date du jour";
+             }
+          ]]> 
+				</Result>
+ 		  </OnUpdate>
+  </Text>
+  <Text Position="NLigne" Label="Description" ColTable="DESFER" Nom="DESFER" Type="AlphaNumerique" Longueur="30" />
+
+    
+		<Bouton Position="NLigne" Label="Valider"  Action="Valider" MsgConfirm="Confirmer cette opération" />
+		<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+
+		 <OnInit>
+				<Result>
+				</Result>
+ 		 </OnInit>	
+
+	</Formulaire>
+
+</Entites>

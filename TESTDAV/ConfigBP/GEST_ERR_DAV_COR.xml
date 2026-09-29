@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+	
+	<Formulaire Nom="CORRECTION AUTOMATIQUE DES ERREURS DU FICHIER DAV"
+		Titre="CORRECTION AUTOMATIQUE DES ERREURS DU FICHIER DAV"
+    Tables="DAVB_DATE_CORRIGE"
+		IndSuppression="SUDATEC"
+		Action="CREATION" >
+        		
+    <Text Position="0" Label="Date : " ColTable="DATOPEC" Nom="DATOPEC" Type="Date" Index="Oui" Longueur="10" Unique="Oui" Disabled="Non" Obligatoire="Oui" >
+      <OnInit>
+			<Requet Tables="DAVB_DATE" >
+					 <Select Nom="DATOPEDAV" Type="AlphaNumerique" ColTable="DATOPE"/>
+			</Requet>
+			
+			<Result>
+          <![CDATA[  
+               //%THIS0301%=%DATOPEDAV%.substring(8,10) + "/" + %DATOPEDAV%.substring(5,7) + "/" + %DATOPEDAV%.substring(0,4) ;
+               ]]> 
+         </Result>
+      </OnInit> 
+
+			<OnUpdate>
+
+			<Requet Tables="DAVB_WORK" >
+					  <Select Nom="NBRTRT" Type="AlphaNumerique" ColTable="'0'||count(*)"/>
+			</Requet>
+
+  			<Requet Tables="DAVB_WORK" Where=" STATUT_W='E'" >
+					    <Select Nom="NBRERR" Type="AlphaNumerique" ColTable="'0'||count(*)"/>            
+		  	</Requet>		
+			
+			<Result>
+          <![CDATA[  
+             if(%THIS0101%.equals("") )
+             {
+             return;
+             }
+
+           java.text.SimpleDateFormat dateStandard = new java.text.SimpleDateFormat("dd/MM/yyyy");
+					 java.util.Date DATJOU=dateStandard.parse(%Journee%);
+					 java.util.Date DATSAI=dateStandard.parse(%THIS0101%);
+
+						 if (DATSAI.compareTo(DATJOU) !=0)
+             { 
+               %THIS0101%="ERREUR: Date saisie doit etre egale à la date du jour "+ %Journee%;
+			   return;
+             }
+               %THIS0302%="Nombre total de lignes à traiter = " + %NBRTRT%;
+               %THIS0303%="Nombre total de lignes erronées = " + %NBRERR%;
+
+          ]]> 
+				 </Result>
+
+			</OnUpdate>			
+
+	  </Text>
+
+   <SimpleText Position="NLigne" Label="" Valeur="" />
+   <SimpleText Position="NLigne" Label="" Valeur="" />
+   <SimpleText Position="2" Label="" Class="Invisible" Valeur="" />
+	  
+		<Bouton Position="NLigne" Label="valider"  Action="Valider" MsgConfirm="Confirmer cette opération" >
+		 <OnUpdate>
+			<Requet Tables="DAVB_DATE_CORRIGE" >
+					  <Select Nom="NBRENR" Type="AlphaNumerique" ColTable="'0'||count(*)"/>
+			</Requet>
+				<Result>
+                  <![CDATA[  
+                      %THIS0304%=%NBRENR%;
+                  ]]> 
+				</Result>
+ 		 </OnUpdate>
+        </Bouton>
+
+	<Bouton Position="Auto" Label="Quitter" Action="Quitter" />
+		
+		 <OnInit>
+		    	<Result>
+				</Result>
+ 		 </OnInit>	
+		
+		 <OnUpdate>
+             <Procedure Nom="CORRECT_DAVB_WORK(%THIS0304%)" />
+				<Result>
+				</Result>
+ 		 </OnUpdate>
+	
+	</Formulaire>
+	
+</Entites>

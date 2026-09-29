@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Entites>
+		
+	<Formulaire Nom="Test"
+            Titre="Envoie fichier DAV vers SED"
+                                          
+            Tables=""
+            
+			Action=""
+						
+            >
+	
+		
+		<Text Position="0" Label="Journée du : " ColTable="" Disabled="Oui"  Type="Date" Index="Oui"  Obligatoire="Oui" Longueur="10"  PositionCel="3" LongueurCel="5" LabelCel="Année">
+							
+		</Text>
+		
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+    <SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+	<SimpleText Position="NLigne" Class="Invisible"  Label="" Valeur="" />
+
+		<Bouton Position="130" Label="Valider" Action="Valider" MsgConfirm="Confirmer cette opération" MsgAttente="Veuillez patienter, Fin de journée en cours " />
+		<Bouton Position="Auto" Label="Annuler" Action="Accueil" />
+		
+	   <OnInit>
+
+  			<Requet Tables="DAVB_SED" >
+					    <Select Nom="NBRSED" Type="AlphaNumerique" ColTable="'0'||count(*)" />
+		  	</Requet>		
+
+     			<Result>
+					if(Integer.parseInt(%EtatSystem%)== 1)
+						%THIS%="ERREUR: Accée refusé, une procédure est en cours d'execution. ";
+					else	
+					 if(Integer.parseInt(%Niveau%) != 2)
+						{
+						%THIS%="ERREUR: Début de journée non effectuée ";
+						}
+					 else
+                       if(Integer.parseInt(%NBRSED%.trim())==0)
+						{
+                          %THIS%="ERREUR: Le fichier DAV à envoyer vers SED n'est pas encore généré" ;
+                        } 
+					   else
+					 	%THIS01%=%Journee%;
+      
+				</Result>
+				
+		</OnInit>	
+		 <OnUpdate>
+                <Requet Tables="DAVB_DATE_SED" >
+					  <Select Nom="DATE_SED" Type="AlphaNumerique" ColTable="DATE_SED"/>
+			    </Requet>		 
+
+				<Result>
+					%EtatSystem%=1;
+					//%THIS04%=new java.text.SimpleDateFormat("yyMMdd").format(new Date());
+				  
+				    %THIS04%=%DATE_SED%.substring(2, 4) + %DATE_SED%.substring(5, 7)  + %DATE_SED%.substring(8, 10);
+				</Result>
+
+        <Procedure Nom="PINSDAV()" />
+        <Procedure Nom="FORM_DAV_SED()" />
+
+        <WebService Methode = "TableToFile" >
+
+					<Set Nom="URL_File" >%URLEtat%BI%THIS04%</Set>
+					<Set Nom="Select" >select * from LIG_DAV_SED</Set>
+          <Set Nom="Ligne" >1:0:107:A::;</Set>
+          <Set Nom="Separator" ></Set>
+					<Set Nom="DB" >%IPDB%:%ConnexionDB%</Set>
+					<Set Nom="DBUser" >%UserDB%</Set>
+					<Set Nom="DBPWD" >%PWDDB%</Set>
+					<Return Nom="Nb" into="THIS02" /> 
+          <Return Nom="NbErr" into="THIS03" /> 
+		</WebService>
+
+
+        <WebService Methode = "FtpPost" >
+
+     		<Set Nom="URL" >%URLEtat%</Set>
+
+            <Set Nom="File" >BI%THIS04%</Set>
+
+            <Set Nom="FTP_USER" >international</Set>
+
+            <Set Nom="FTP_PWD" >international7895opt@$Y</Set>
+
+            <Set Nom="FTP_HOST" >172.28.70.151</Set>
+
+        </WebService>
+
+						
+		<Result>
+					    %EtatSystem%=0;
+						%Niveau%="0";
+						%THIS%="Confirmation: Envoie effectué avec succès";
+	    </Result>
+        				
+		</OnUpdate>	
+	</Formulaire>
+	
+	
+</Entites>

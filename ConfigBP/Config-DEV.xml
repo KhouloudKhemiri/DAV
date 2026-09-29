@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Parametres>
+  <Param Nom="Nom Application" Valeur="GESTION DAV (DEVDAV)"/>
+  <Param Nom="ID" Valeur="02"/>
+  <Param Nom="IP_Aut_Server" Valeur="172.28.70.101"/>
+  <Param Nom="Port_Aut_Server" Valeur="7777"/>
+  <Param Nom="URL_Aut_Server" Valeur="/Identification/Identification?invoke=Identify"/>
+  
+  <Param Nom="URLConfig" Valeur="/opt/apache-tomcat/webapps/DEVDAV/ConfigDav/"/>
+  <Param Nom="URLHTML" Valeur="/opt/apache-tomcat/webapps/DEVDAV/ModelHTML/"  />
+  <Param Nom="URLFILE" Valeur="/opt/apache-tomcat/webapps/DEVDAV/Data/"  />
+  <Param Nom="URLEtat" Valeur="/opt/apache-tomcat/webapps/DEVDAV/Etat/"  />
+  <Param Nom="URLImage" Valeur="/opt/apache-tomcat/webapps/DEVDAV/Images/"  />
+  
+  <Param Nom="ServerEtat" Valeur="rep_biatnet"  />
+  <Param Nom="EtatSystem" Valeur="0"  Global="Oui" />
+  <Param Nom="Niveau" Valeur="2"  Global="Oui" />
+  <Param Nom="Journee" Libelle="Journée comptable" Valeur="11/12/2015" Header="Oui" Global="Oui" />
+  <Param Nom="EtatGen" Valeur="0" Global="Oui" />
+  <Param Nom="ConnexionDB" Valeur="test" />
+  <Param Nom="IPDB" Valeur="172.28.70.62:1521"  />
+  <Param Nom="UserDB" Valeur="devdav" />
+  <Param Nom="PWDDB" Valeur="devdav54321"  />
+</Parametres>
